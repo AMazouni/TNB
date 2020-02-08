@@ -2,10 +2,14 @@ package com.example.demo.beans;
 
 import java.math.BigDecimal;
 
+import javax.persistence.ManyToOne;
+
 public class Terrain {
 	private long id;
 	private BigDecimal surface;
+	@ManyToOne
 	private Quartier quartier;
+	@ManyToOne
 	private Redevable redevable;
 	private int dernierAnnePaiement;
 	public long getId() {
@@ -38,5 +42,17 @@ public class Terrain {
 	public void setDernierAnnePaiement(int dernierAnnePaiement) {
 		this.dernierAnnePaiement = dernierAnnePaiement;
 	}
+	public Terrain(long id, BigDecimal surface, Quartier quartier, Redevable redevable, int dernierAnnePaiement) {
+		super();
+		this.id = id;
+		this.surface = surface;
+		this.quartier = quartier;
+		this.redevable = redevable;
+		this.dernierAnnePaiement = dernierAnnePaiement;
+	}
+	public Terrain() {
+		super();
+	}
+	
 	
 }

@@ -2,9 +2,20 @@ package com.example.demo.beans;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+
+import org.springframework.data.annotation.Id;
+@Entity
 public class TaxeTNB {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@ManyToOne
 	private Terrain terrain;
+	@ManyToOne
 	private Redevable redevable;
 	private double montant;
 	private Date dateTaxeTNB;
@@ -44,6 +55,18 @@ public class TaxeTNB {
 	}
 	public void setAnnee(int annee) {
 		this.annee = annee;
+	}
+	public TaxeTNB(long id, Terrain terrain, Redevable redevable, double montant, Date dateTaxeTNB, int annee) {
+		super();
+		this.id = id;
+		this.terrain = terrain;
+		this.redevable = redevable;
+		this.montant = montant;
+		this.dateTaxeTNB = dateTaxeTNB;
+		this.annee = annee;
+	}
+	public TaxeTNB() {
+		super();
 	}
 	
 
