@@ -2,10 +2,12 @@ package com.example.demo.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.example.demo.beans.TypeRedevable;
 import com.example.demo.dao.TypeRedevableDao;
 import com.example.demo.service.facade.TypeRedevableService;
-
+@Service
 public class TypeRedevableServiceImpl implements TypeRedevableService {
 
 	TypeRedevableDao typeRedevableDao;
