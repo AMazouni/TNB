@@ -57,11 +57,11 @@ public class TauxTNB {
 	public void setDateApp(Date dateApp) {
 		this.dateApp = dateApp;
 	}
-	public Date getDatefinApp() {
-		return datefinApp;
+	public Date getDateFinApp() {
+		return dateFinApp;
 	}
-	public void setDatefinApp(Date datefinApp) {
-		this.datefinApp = datefinApp;
+	public void setDatFinApp(Date datefinApp) {
+		this.dateFinApp = datefinApp;
 	}
 	public TauxTNB(long id, Categorie categorie, double surfaceMax, double surfaceMin, double montant, Date dateApp,
 			Date datefinApp) {
@@ -72,7 +72,7 @@ public class TauxTNB {
 		this.surfaceMin = surfaceMin;
 		this.montant = montant;
 		this.dateApp = dateApp;
-		this.datefinApp = datefinApp;
+		this.dateFinApp = datefinApp;
 	}
 	public TauxTNB() {
 		super();
