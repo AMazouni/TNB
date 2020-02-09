@@ -13,18 +13,18 @@ import org.springframework.data.annotation.Id;
 public class TauxTNB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	@ManyToOne
 	private Categorie categorie;
-	private double surfaceMax;
-	private double surfaceMin;
-	private double montant;
+	private Double surfaceMax;
+	private Double surfaceMin;
+	private Double montant;
 	private Date dateApp;
-	private Date datefinApp;
-	public long getId() {
+	private Date dateFinApp;
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Categorie getCategorie() {
@@ -33,22 +33,22 @@ public class TauxTNB {
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
-	public double getSurfaceMax() {
+	public Double getSurfaceMax() {
 		return surfaceMax;
 	}
-	public void setSurfaceMax(double surfaceMax) {
+	public void setSurfaceMax(Double surfaceMax) {
 		this.surfaceMax = surfaceMax;
 	}
-	public double getSurfaceMin() {
+	public Double getSurfaceMin() {
 		return surfaceMin;
 	}
-	public void setSurfaceMin(double surfaceMin) {
+	public void setSurfaceMin(Double surfaceMin) {
 		this.surfaceMin = surfaceMin;
 	}
-	public double getMontant() {
+	public Double getMontant() {
 		return montant;
 	}
-	public void setMontant(double montant) {
+	public void setMontant(Double montant) {
 		this.montant = montant;
 	}
 	public Date getDateApp() {
@@ -58,12 +58,12 @@ public class TauxTNB {
 		this.dateApp = dateApp;
 	}
 	public Date getDatefinApp() {
-		return datefinApp;
+		return dateFinApp;
 	}
 	public void setDatefinApp(Date datefinApp) {
-		this.datefinApp = datefinApp;
+		this.dateFinApp = datefinApp;
 	}
-	public TauxTNB(long id, Categorie categorie, double surfaceMax, double surfaceMin, double montant, Date dateApp,
+	public TauxTNB(Long id, Categorie categorie, Double surfaceMax, Double surfaceMin, Double montant, Date dateApp,
 			Date datefinApp) {
 		super();
 		this.id = id;
@@ -72,7 +72,7 @@ public class TauxTNB {
 		this.surfaceMin = surfaceMin;
 		this.montant = montant;
 		this.dateApp = dateApp;
-		this.datefinApp = datefinApp;
+		this.dateFinApp = datefinApp;
 	}
 	public TauxTNB() {
 		super();

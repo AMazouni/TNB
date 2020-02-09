@@ -13,16 +13,16 @@ import org.springframework.data.annotation.Id;
 public class Redevable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String identifiant;
 	private String nom;
 	private TypeRedevable typeRedevable;
 	@OneToMany
 	private List<Terrain> terrains = new ArrayList<Terrain>();
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getIdentifiant() {
@@ -49,7 +49,7 @@ public class Redevable {
 	public void setTerrains(List<Terrain> terrains) {
 		this.terrains = terrains;
 	}
-	public Redevable(long id, String identifiant, String nom, TypeRedevable typeRedevable, List<Terrain> terrains) {
+	public Redevable(Long id, String identifiant, String nom, TypeRedevable typeRedevable, List<Terrain> terrains) {
 		super();
 		this.id = id;
 		this.identifiant = identifiant;

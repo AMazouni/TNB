@@ -12,18 +12,18 @@ import org.springframework.data.annotation.Id;
 public class TaxeTNB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	@ManyToOne
 	private Terrain terrain;
 	@ManyToOne
 	private Redevable redevable;
-	private double montant;
+	private Double montant;
 	private Date dateTaxeTNB;
-	private int annee;
-	public long getId() {
+	private Integer annee;
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Terrain getTerrain() {
@@ -38,10 +38,10 @@ public class TaxeTNB {
 	public void setRedevable(Redevable redevable) {
 		this.redevable = redevable;
 	}
-	public double getMontant() {
+	public Double getMontant() {
 		return montant;
 	}
-	public void setMontant(double montant) {
+	public void setMontant(Double montant) {
 		this.montant = montant;
 	}
 	public Date getDateTaxeTNB() {
@@ -50,13 +50,13 @@ public class TaxeTNB {
 	public void setDateTaxeTNB(Date dateTaxeTNB) {
 		this.dateTaxeTNB = dateTaxeTNB;
 	}
-	public int getAnnee() {
+	public Integer getAnnee() {
 		return annee;
 	}
-	public void setAnnee(int annee) {
+	public void setAnnee(Integer annee) {
 		this.annee = annee;
 	}
-	public TaxeTNB(long id, Terrain terrain, Redevable redevable, double montant, Date dateTaxeTNB, int annee) {
+	public TaxeTNB(Long id, Terrain terrain, Redevable redevable, Double montant, Date dateTaxeTNB, Integer annee) {
 		super();
 		this.id = id;
 		this.terrain = terrain;

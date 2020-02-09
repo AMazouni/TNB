@@ -10,12 +10,12 @@ import org.springframework.data.annotation.Id;
 public class Categorie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String libelle;
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getLibelle() {
@@ -24,7 +24,7 @@ public class Categorie {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	public Categorie(long id, String libelle) {
+	public Categorie(Long id, String libelle) {
 		super();
 		this.id = id;
 		this.libelle = libelle;

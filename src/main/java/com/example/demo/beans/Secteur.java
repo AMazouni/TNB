@@ -13,14 +13,14 @@ import org.springframework.data.annotation.Id;
 public class Secteur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String Libelle;
 	@OneToMany
 	private List<Quartier> quartiers = new ArrayList<Quartier>();
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getLibelle() {
@@ -35,7 +35,7 @@ public class Secteur {
 	public void setQuartiers(List<Quartier> quartiers) {
 		this.quartiers = quartiers;
 	}
-	public Secteur(long id, String libelle, List<Quartier> quartiers) {
+	public Secteur(Long id, String libelle, List<Quartier> quartiers) {
 		super();
 		this.id = id;
 		Libelle = libelle;
