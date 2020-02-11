@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.beans.Categorie;
-import com.example.demo.beans.TauxTNB;
+import com.example.demo.bean.Categorie;
+import com.example.demo.bean.TauxTNB;
 import com.example.demo.service.facade.TauxTNBService;
 
 @Repository

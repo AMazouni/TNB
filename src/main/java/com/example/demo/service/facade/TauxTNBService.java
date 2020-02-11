@@ -3,8 +3,8 @@ package com.example.demo.service.facade;
 import java.util.Date;
 import java.util.List;
 
-import com.example.demo.beans.Categorie;
-import com.example.demo.beans.TauxTNB;
+import com.example.demo.bean.Categorie;
+import com.example.demo.bean.TauxTNB;
 
 public interface TauxTNBService {
 	public TauxTNB findById(Long id);

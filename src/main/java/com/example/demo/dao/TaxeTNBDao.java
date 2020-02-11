@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.beans.Redevable;
-import com.example.demo.beans.TaxeTNB;
-import com.example.demo.beans.Terrain;
+import com.example.demo.bean.Redevable;
+import com.example.demo.bean.TaxeTNB;
+import com.example.demo.bean.Terrain;
 
 public interface TaxeTNBDao extends JpaRepository<TaxeTNB, Long> {
 

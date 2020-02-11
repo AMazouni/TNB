@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.beans.Categorie;
-import com.example.demo.beans.TauxTNB;
+import com.example.demo.bean.Categorie;
+import com.example.demo.bean.TauxTNB;
 
 public interface TauxTNBDao extends JpaRepository<TauxTNB, Long> {
 

@@ -2,9 +2,9 @@ package com.example.demo.service.facade;
 
 import java.util.List;
 
-import com.example.demo.beans.Redevable;
-import com.example.demo.beans.TaxeTNB;
-import com.example.demo.beans.Terrain;
+import com.example.demo.bean.Redevable;
+import com.example.demo.bean.TaxeTNB;
+import com.example.demo.bean.Terrain;
 
 public interface TaxeTNBService {
 	public List<TaxeTNB> findByTerrain(Terrain terrain);

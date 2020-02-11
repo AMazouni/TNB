@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.beans.Terrain;
+import com.example.demo.bean.Terrain;
 import com.example.demo.dao.TerrainDao;
 import com.example.demo.service.facade.TerrainService;
 @Service

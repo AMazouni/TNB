@@ -2,8 +2,8 @@ package com.example.demo.service.facade;
 
 import java.util.List;
 
-import com.example.demo.beans.Redevable;
-import com.example.demo.beans.TypeRedevable;
+import com.example.demo.bean.Redevable;
+import com.example.demo.bean.TypeRedevable;
 
 public interface RedevableService {
 

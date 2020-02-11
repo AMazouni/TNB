@@ -2,7 +2,7 @@ package com.example.demo.service.facade;
 
 import java.util.List;
 
-import com.example.demo.beans.Secteur;
+import com.example.demo.bean.Secteur;
 
 
 
@@ -11,6 +11,5 @@ public interface SecteurService {
 	public Secteur findByid(Long id);
 	public int deleteById(Long id);
 	public void save(Secteur secteur);
-	public Secteur findByQuartiersId(Long id);
 	public void update(Long id,Secteur secteur);
 }

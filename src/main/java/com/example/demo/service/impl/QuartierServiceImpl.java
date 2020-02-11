@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.beans.Quartier;
+import com.example.demo.bean.Quartier;
 import com.example.demo.dao.QuartierDao;
 import com.example.demo.service.facade.QuartierService;
 @Service
@@ -41,11 +41,7 @@ public class QuartierServiceImpl implements QuartierService {
 		} else return -1;
 	}
 
-	@Override
-	public Quartier findByTerrainsId(Long id) {
-		return quartierDao.findByTerrainsId(id);
-	}
-
+	
 	@Override
 	public void save(Quartier quartier) {
 		quartierDao.save(quartier);

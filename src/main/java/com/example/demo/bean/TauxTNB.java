@@ -1,4 +1,4 @@
-package com.example.demo.beans;
+package com.example.demo.bean;
 
 import java.util.Date;
 
@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 
@@ -20,13 +22,28 @@ public class TauxTNB {
 	private Double surfaceMax;
 	private Double surfaceMin;
 	private Double montant;
+	private Double montantRetard;
+	@Temporal(TemporalType.DATE)
 	private Date dateApp;
+	@Temporal(TemporalType.DATE)
 	private Date dateFinApp;
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	
+	public Double getMontantRetard() {
+		return montantRetard;
+	}
+	public void setMontantRetard(Double montantRetard) {
+		this.montantRetard = montantRetard;
+	}
+	public void setDateFinApp(Date dateFinApp) {
+		this.dateFinApp = dateFinApp;
 	}
 	public Categorie getCategorie() {
 		return categorie;

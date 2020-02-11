@@ -1,4 +1,4 @@
-package com.example.demo.beans;
+package com.example.demo.bean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ public class Redevable {
 	private String nom;
 	@ManyToOne
 	private TypeRedevable typeRedevable;
-	@OneToMany
-	private List<Terrain> terrains = new ArrayList<Terrain>();
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -46,19 +46,13 @@ public class Redevable {
 	public void setTypeRedevable(TypeRedevable typeRedevable) {
 		this.typeRedevable = typeRedevable;
 	}
-	public List<Terrain> getTerrains() {
-		return terrains;
-	}
-	public void setTerrains(List<Terrain> terrains) {
-		this.terrains = terrains;
-	}
-	public Redevable(Long id, String identifiant, String nom, TypeRedevable typeRedevable, List<Terrain> terrains) {
+	
+	public Redevable(Long id, String identifiant, String nom, TypeRedevable typeRedevable) {
 		super();
 		this.id = id;
 		this.identifiant = identifiant;
 		this.nom = nom;
 		this.typeRedevable = typeRedevable;
-		this.terrains = terrains;
 	}
 	public Redevable() {
 		super();

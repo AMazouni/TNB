@@ -3,7 +3,7 @@ package com.example.demo.service.facade;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.example.demo.beans.Terrain;
+import com.example.demo.bean.Terrain;
 
 
 

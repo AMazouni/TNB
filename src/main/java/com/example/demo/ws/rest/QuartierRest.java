@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.beans.Quartier;
+import com.example.demo.bean.Quartier;
 import com.example.demo.service.facade.QuartierService;
 
 @Repository
@@ -41,10 +41,7 @@ public class QuartierRest {
 	public void save(@RequestBody Quartier quartier) {
 		quartierService.save(quartier);
 	}
-	@GetMapping("/findByTerrainsId/{id}")
-	public Quartier findByTerrainsId(@PathVariable("id") Long id) {
-		return quartierService.findByTerrainsId(id);
-	}
+	
 	@PutMapping(path = "/update/{id}")
 	public void update(@PathVariable("id") Long id,@RequestBody Quartier quartier) {
 		quartierService.update(id, quartier);

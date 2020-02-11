@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.beans.Secteur;
+import com.example.demo.bean.Secteur;
 import com.example.demo.dao.SecteurDao;
 import com.example.demo.service.facade.SecteurService;
 @Service
@@ -35,11 +35,6 @@ public class SecteurServiceImpl implements SecteurService {
 	@Override
 	public void save(Secteur secteur) {
 		secteurDao.save(secteur);
-	}
-
-	@Override
-	public Secteur findByQuartiersId(Long id) {
-		return secteurDao.findByQuartiersId(id);
 	}
 
 	@Override

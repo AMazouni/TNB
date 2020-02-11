@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.beans.Redevable;
-import com.example.demo.beans.TypeRedevable;
+import com.example.demo.bean.Redevable;
+import com.example.demo.bean.TypeRedevable;
 
 public interface RedevableDao extends JpaRepository<Redevable, Long> {
    public Redevable findByIdentifiant(String id); 

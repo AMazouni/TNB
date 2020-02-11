@@ -1,4 +1,4 @@
-package com.example.demo.beans;
+package com.example.demo.bean;
 
 import java.util.Date;
 
@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -19,8 +21,41 @@ public class TaxeTNB {
 	@ManyToOne
 	private Redevable redevable;
 	private Double montant;
+	private Double montantRetard;
+	private Double montantTotal;
+	private int nombreMoisRetard;
+	@ManyToOne
+	private TauxTNB tauxTNB;
+	@Temporal(TemporalType.DATE)
 	private Date dateTaxeTNB;
 	private Integer annee;
+	
+	
+	
+	public Double getMontantTotal() {
+		return montantTotal;
+	}
+	public void setMontantTotal(Double montantTotal) {
+		this.montantTotal = montantTotal;
+	}
+	public int getNombreMoisRetard() {
+		return nombreMoisRetard;
+	}
+	public void setNombreMoisRetard(int nombreMoisRetard) {
+		this.nombreMoisRetard = nombreMoisRetard;
+	}
+	public TauxTNB getTauxTNB() {
+		return tauxTNB;
+	}
+	public void setTauxTNB(TauxTNB tauxTNB) {
+		this.tauxTNB = tauxTNB;
+	}
+	public Double getMontantRetard() {
+		return montantRetard;
+	}
+	public void setMontantRetard(Double montantRetard) {
+		this.montantRetard = montantRetard;
+	}
 	public Long getId() {
 		return id;
 	}

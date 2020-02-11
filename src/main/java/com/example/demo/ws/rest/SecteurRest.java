@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.beans.Secteur;
+import com.example.demo.bean.Secteur;
 import com.example.demo.service.facade.SecteurService;
 
 @Repository
@@ -37,10 +37,7 @@ public class SecteurRest {
 	public void save(@RequestBody Secteur secteur) {
 		secteurService.save(secteur);
 	}
-	@GetMapping("/findByQuartiersId/{id}")
-	public Secteur findByQuartiersId(@PathVariable("id") Long id) {
-		return secteurService.findByQuartiersId(id);
-	}
+
 	@PutMapping(path = "/update/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void update(@PathVariable("id") Long id,@RequestBody Secteur secteur) {
 		secteurService.update(id, secteur);

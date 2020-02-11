@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.beans.Terrain;
+import com.example.demo.bean.Terrain;
 
 public interface TerrainDao extends JpaRepository<Terrain, Long> {
 	public List<Terrain> findByRedevableId(Long id);

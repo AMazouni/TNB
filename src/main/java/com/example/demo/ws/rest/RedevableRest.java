@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.beans.Redevable;
-import com.example.demo.beans.TypeRedevable;
+import com.example.demo.bean.Redevable;
+import com.example.demo.bean.TypeRedevable;
 import com.example.demo.service.facade.RedevableService;
 
 @Repository

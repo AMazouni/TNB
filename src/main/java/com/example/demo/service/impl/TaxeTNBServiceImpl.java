@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.beans.Redevable;
-import com.example.demo.beans.TaxeTNB;
-import com.example.demo.beans.Terrain;
+import com.example.demo.bean.Redevable;
+import com.example.demo.bean.TaxeTNB;
+import com.example.demo.bean.Terrain;
 import com.example.demo.dao.TaxeTNBDao;
 import com.example.demo.service.facade.TaxeTNBService;
 

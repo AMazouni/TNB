@@ -1,4 +1,4 @@
-package com.example.demo.beans;
+package com.example.demo.bean;
 
 import java.math.BigDecimal;
 
@@ -19,6 +19,8 @@ public class Terrain {
 	@ManyToOne
 	private Redevable redevable;
 	private int dernierAnnePaiement;
+	
+	
 	public long getId() {
 		return id;
 	}

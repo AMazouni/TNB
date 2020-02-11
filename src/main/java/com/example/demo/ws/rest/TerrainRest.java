@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.beans.Terrain;
+import com.example.demo.bean.Terrain;
 import com.example.demo.service.facade.TerrainService;
 
 @Repository
