@@ -12,7 +12,7 @@ public interface TypeRedevableService {
 
 	public int save(TypeRedevable typeredevable);
 
-	public int deleteById(Long Id);
+	public int deleteById(Long id);
 
 	public int update(TypeRedevable typeredevable);
 }

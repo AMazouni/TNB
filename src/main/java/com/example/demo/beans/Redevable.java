@@ -6,9 +6,11 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.springframework.data.annotation.Id;
+
 @Entity
 public class Redevable {
 	@Id
@@ -16,6 +18,7 @@ public class Redevable {
 	private Long id;
 	private String identifiant;
 	private String nom;
+	@ManyToOne
 	private TypeRedevable typeRedevable;
 	@OneToMany
 	private List<Terrain> terrains = new ArrayList<Terrain>();
