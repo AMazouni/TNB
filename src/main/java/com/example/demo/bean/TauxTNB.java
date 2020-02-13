@@ -1,5 +1,6 @@
 package com.example.demo.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -19,8 +20,8 @@ public class TauxTNB {
 	private Long id;
 	@ManyToOne
 	private Categorie categorie;
-	private Double surfaceMax;
-	private Double surfaceMin;
+	private BigDecimal surfaceMax;
+	private BigDecimal surfaceMin;
 	private Double montant;
 	private Double montantRetard;
 	@Temporal(TemporalType.DATE)
@@ -51,16 +52,16 @@ public class TauxTNB {
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
-	public Double getSurfaceMax() {
+	public BigDecimal getSurfaceMax() {
 		return surfaceMax;
 	}
-	public void setSurfaceMax(Double surfaceMax) {
+	public void setSurfaceMax(BigDecimal surfaceMax) {
 		this.surfaceMax = surfaceMax;
 	}
-	public Double getSurfaceMin() {
+	public BigDecimal getSurfaceMin() {
 		return surfaceMin;
 	}
-	public void setSurfaceMin(Double surfaceMin) {
+	public void setSurfaceMin(BigDecimal surfaceMin) {
 		this.surfaceMin = surfaceMin;
 	}
 	public Double getMontant() {
@@ -81,7 +82,7 @@ public class TauxTNB {
 	public void setDatFinApp(Date datefinApp) {
 		this.dateFinApp = datefinApp;
 	}
-	public TauxTNB(long id, Categorie categorie, double surfaceMax, double surfaceMin, double montant, Date dateApp,
+	public TauxTNB(long id, Categorie categorie, BigDecimal surfaceMax, BigDecimal surfaceMin, double montant, Date dateApp,
 			Date datefinApp) {
 		super();
 		this.id = id;

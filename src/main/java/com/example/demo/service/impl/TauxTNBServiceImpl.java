@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class TauxTNBServiceImpl implements TauxTNBService {
 	}
 
 	@Override
-	public List<TauxTNB> findBySurface(Double surface) {
+	public List<TauxTNB> findBySurface(BigDecimal surface) {
 		return tauxTNBDao.findBySurfaceMaxGreaterThanEqualAndSurfaceMinLessThanEqual(surface, surface);
 	}
 
@@ -79,7 +80,7 @@ public class TauxTNBServiceImpl implements TauxTNBService {
 	}
 
 	@Override
-	public List<TauxTNB> findByDateAndSurface(Double surface, Date date) {
+	public List<TauxTNB> findByDateAndSurface(BigDecimal surface, Date date) {
 		List<TauxTNB> listByDate = this.findByDate(date);
 		List<TauxTNB> listBySurfaceAndDate = this.findBySurface(surface);
 		listBySurfaceAndDate.retainAll(listByDate);
@@ -87,12 +88,14 @@ public class TauxTNBServiceImpl implements TauxTNBService {
 	}
 
 	@Override
-	public List<TauxTNB> findByDateAndSurfaceAndCategorie(Double surface, Date date, Categorie categorie) {
+	public List<TauxTNB> findByDateAndSurfaceAndCategorie(BigDecimal surface, Date date, Categorie categorie) {
 		List<TauxTNB> listBycategorie = this.findByCategorie(categorie);
 		List<TauxTNB> listBySurfaceAndDateAndCategorie = this.findByDateAndSurface(surface, date);
 		listBySurfaceAndDateAndCategorie.retainAll(listBycategorie);
 		return listBySurfaceAndDateAndCategorie;
 
 	}
+
+
 
 }

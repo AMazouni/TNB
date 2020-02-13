@@ -1,9 +1,12 @@
 package com.example.demo.bean;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 
@@ -13,6 +16,8 @@ public class TypeRedevable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String libelle;
+	@OneToMany (mappedBy = "typeRedevable" )
+	private List<Redevable>  redevables;
 	public Long getId() {
 		return id;
 	}

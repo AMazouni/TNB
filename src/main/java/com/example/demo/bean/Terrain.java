@@ -18,9 +18,17 @@ public class Terrain {
 	private Quartier quartier;
 	@ManyToOne
 	private Redevable redevable;
+	@ManyToOne
+	private Categorie categorie;
 	private int dernierAnnePaiement;
 	
 	
+	public Categorie getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
 	public long getId() {
 		return id;
 	}

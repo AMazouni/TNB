@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface TauxTNBDao extends JpaRepository<TauxTNB, Long> {
 
 	public List<TauxTNB> findByCategorie(Categorie categorie);
 
-	public List<TauxTNB> findBySurfaceMaxGreaterThanEqualAndSurfaceMinLessThanEqual(double surf1,double surf2);
+	public List<TauxTNB> findBySurfaceMaxGreaterThanEqualAndSurfaceMinLessThanEqual(BigDecimal surf1,BigDecimal surf2);
 	
 	public List<TauxTNB> findByDateAppBeforeAndDateFinAppAfter(Date date1,Date date2);
 

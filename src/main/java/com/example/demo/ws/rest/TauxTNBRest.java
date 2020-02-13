@@ -1,5 +1,6 @@
 package com.example.demo.ws.rest;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class TauxTNBRest {
 		return tauxTNBservice.findByCategorieId(id);
 	}
 	
-	public List<TauxTNB> findBySurface(Double surface){
+	public List<TauxTNB> findBySurface(BigDecimal surface){
 		return tauxTNBservice.findBySurface(surface);
 	}
 	
@@ -54,11 +55,11 @@ public class TauxTNBRest {
 		return tauxTNBservice.findByDate(date);
 	}
 	
-	public List<TauxTNB> findByDateAndSurface(Double surface,Date date){
+	public List<TauxTNB> findByDateAndSurface(BigDecimal surface,Date date){
 		return tauxTNBservice.findByDateAndSurface(surface, date);
 	}
 	
-	public List<TauxTNB> findByDateAndSurfaceAndCategorie(Double surface,Date date,Categorie categorie){
+	public List<TauxTNB> findByDateAndSurfaceAndCategorie(BigDecimal surface,Date date,Categorie categorie){
 		return tauxTNBservice.findByDateAndSurfaceAndCategorie(surface, date, categorie);
 	}
 	

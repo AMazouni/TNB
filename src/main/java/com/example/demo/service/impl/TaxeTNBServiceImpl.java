@@ -1,21 +1,33 @@
 package com.example.demo.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.bean.Redevable;
+import com.example.demo.bean.TauxTNB;
 import com.example.demo.bean.TaxeTNB;
 import com.example.demo.bean.Terrain;
 import com.example.demo.dao.TaxeTNBDao;
+import com.example.demo.service.facade.RedevableService;
+import com.example.demo.service.facade.TauxTNBService;
 import com.example.demo.service.facade.TaxeTNBService;
+import com.example.demo.service.facade.TerrainService;
 
 @Service
 public class TaxeTNBServiceImpl implements TaxeTNBService {
 
 	@Autowired
 	TaxeTNBDao taxeTNBDao;
+
+	@Autowired
+	TauxTNBService tauxTNBService;
+	@Autowired
+	RedevableService redevableService;
+	@Autowired
+	TerrainService terrainService;
 
 	@Override
 	public List<TaxeTNB> findByTerrain(Terrain terrain) {
@@ -79,6 +91,17 @@ public class TaxeTNBServiceImpl implements TaxeTNBService {
 		if (taxeTNBDao.findById(id).isPresent())
 			return taxeTNBDao.findById(id).get();
 		else
+			return null;
+	}
+
+	@Override
+	public TaxeTNB payerSim(Integer annee, Long idTerrain) {
+		TaxeTNB payeSim = new TaxeTNB();
+		payeSim.setTerrain(terrainService.findByid(idTerrain));
+		Date date= new Date();
+		List<TauxTNB> taux = tauxTNBService.findByDateAndSurfaceAndCategorie(payeSim.getTerrain().getSurface(), date, payeSim.getTerrain().getCategorie());
+	
+        payeSim.setTauxTNB(taux.get(0));
 		return null;
 	}
 

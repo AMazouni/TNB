@@ -1,5 +1,6 @@
 package com.example.demo.service.facade;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -21,11 +22,11 @@ public interface TauxTNBService {
 	
 	public List<TauxTNB> findByCategorieId(Long id);
 	
-	public List<TauxTNB> findBySurface(Double surface);
+	public List<TauxTNB> findBySurface(BigDecimal surface);
 	
 	public List<TauxTNB> findByDate(Date date);
 	
-	public List<TauxTNB> findByDateAndSurface(Double surface,Date date);
+	public List<TauxTNB> findByDateAndSurface(BigDecimal surface,Date date);
 	
-	public List<TauxTNB> findByDateAndSurfaceAndCategorie(Double surface,Date date,Categorie categorie);
+	public List<TauxTNB> findByDateAndSurfaceAndCategorie(BigDecimal surface,Date date,Categorie categorie);
 }

@@ -26,4 +26,6 @@ public interface TaxeTNBService {
 	public int deleteById(Long id);
 
 	public TaxeTNB findById(Long id);
+
+	public TaxeTNB payerSim(Integer annee, Long idTerrain);
 }
