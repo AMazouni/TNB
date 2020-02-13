@@ -1,11 +1,13 @@
 package com.example.demo.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -21,9 +23,11 @@ public class Notification {
 	private Date anneeDepart;
 	@Temporal(TemporalType.DATE)
 	private Date anneeFin;
-	private Double montantDeBase;
-	private Double montantDeRetard;
-	private int nombreMoisDeRetard;
+	private Double montantBase;
+	private Double montantRetard;
+	private int nombreMoisRetard;
+	@OneToMany(mappedBy = "notification")
+	private List<NotificationDetail> notificationDetails;
 	public Long getId() {
 		return id;
 	}
@@ -60,26 +64,33 @@ public class Notification {
 	public void setAnneeFin(Date anneeFin) {
 		this.anneeFin = anneeFin;
 	}
-	public Double getMontantDeBase() {
-		return montantDeBase;
+	public Double getMontantBase() {
+		return montantBase;
 	}
-	public void setMontantDeBase(Double montantDeBase) {
-		this.montantDeBase = montantDeBase;
+	public void setMontantBase(Double montantBase) {
+		this.montantBase = montantBase;
 	}
-	public Double getMontantDeRetard() {
-		return montantDeRetard;
+	public Double getMontantRetard() {
+		return montantRetard;
 	}
-	public void setMontantDeRetard(Double montantDeRetard) {
-		this.montantDeRetard = montantDeRetard;
+	public void setMontantRetard(Double montantRetard) {
+		this.montantRetard = montantRetard;
 	}
-	public int getNombreMoisDeRetard() {
-		return nombreMoisDeRetard;
+	public int getNombreMoisRetard() {
+		return nombreMoisRetard;
 	}
-	public void setNombreMoisDeRetard(int nombreMoisDeRetard) {
-		this.nombreMoisDeRetard = nombreMoisDeRetard;
+	public void setNombreMoisRetard(int nombreMoisRetard) {
+		this.nombreMoisRetard = nombreMoisRetard;
+	}
+	public List<NotificationDetail> getNotificationDetails() {
+		return notificationDetails;
+	}
+	public void setNotificationDetails(List<NotificationDetail> notificationDetails) {
+		this.notificationDetails = notificationDetails;
 	}
 	public Notification(Long id, NotificationType notificationType, Redevable redevable, Terrain terrain,
-			Date anneeDepart, Date anneeFin, Double montantDeBase, Double montantDeRetard, int nombreMoisDeRetard) {
+			Date anneeDepart, Date anneeFin, Double montantBase, Double montantRetard, int nombreMoisRetard,
+			List<NotificationDetail> notificationDetails) {
 		super();
 		this.id = id;
 		this.notificationType = notificationType;
@@ -87,9 +98,10 @@ public class Notification {
 		this.terrain = terrain;
 		this.anneeDepart = anneeDepart;
 		this.anneeFin = anneeFin;
-		this.montantDeBase = montantDeBase;
-		this.montantDeRetard = montantDeRetard;
-		this.nombreMoisDeRetard = nombreMoisDeRetard;
+		this.montantBase = montantBase;
+		this.montantRetard = montantRetard;
+		this.nombreMoisRetard = nombreMoisRetard;
+		this.notificationDetails = notificationDetails;
 	}
 	public Notification() {
 		super();

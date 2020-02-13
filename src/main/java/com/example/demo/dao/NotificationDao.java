@@ -12,4 +12,6 @@ public interface NotificationDao extends JpaRepository<Notification, Long> {
 	public List<Notification> findByRedevableId(Long id);
 	public List<Notification> findByAnneeDepartAndAnneeFin(Date anneeDepart,Date anneeFin);
 	public List<Notification> findByTerrainId(Long id);
+	
+	//  save Notification(int annee,int numro
 }
