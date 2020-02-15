@@ -1,23 +1,17 @@
 package com.example.demo.bean;
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 
 @Entity
-public class Quartier {
+public class NotificationType {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 	private String libelle;
-	@ManyToOne
-	private Secteur secteur;
-
+	private int numero;
 	public Long getId() {
 		return id;
 	}
@@ -30,22 +24,21 @@ public class Quartier {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	public Secteur getSecteur() {
-		return secteur;
+	public int getNumero() {
+		return numero;
 	}
-	public void setSecteur(Secteur secteur) {
-		this.secteur = secteur;
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
-	
-	public Quartier(long id, String libelle, Secteur secteur) {
+	public NotificationType(Long id, String libelle, int numero) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
-		this.secteur = secteur;
+		this.numero = numero;
 	}
-	public Quartier() {
+	public NotificationType() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	
 	
 }
