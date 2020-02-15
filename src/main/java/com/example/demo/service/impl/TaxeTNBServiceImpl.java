@@ -15,6 +15,7 @@ import com.example.demo.service.facade.RedevableService;
 import com.example.demo.service.facade.TauxTNBService;
 import com.example.demo.service.facade.TaxeTNBService;
 import com.example.demo.service.facade.TerrainService;
+import com.example.demo.utils.DateUtils;
 
 @Service
 public class TaxeTNBServiceImpl implements TaxeTNBService {
@@ -98,11 +99,20 @@ public class TaxeTNBServiceImpl implements TaxeTNBService {
 	public TaxeTNB payerSim(Integer annee, Long idTerrain) {
 		TaxeTNB payeSim = new TaxeTNB();
 		payeSim.setTerrain(terrainService.findByid(idTerrain));
-		Date date= new Date();
-		List<TauxTNB> taux = tauxTNBService.findByDateAndSurfaceAndCategorie(payeSim.getTerrain().getSurface(), date, payeSim.getTerrain().getCategorie());
-	
-        payeSim.setTauxTNB(taux.get(0));
-		return null;
+		Date date= DateUtils.getDateByYear(annee);
+		TauxTNB taux = tauxTNBService.findByDateAndSurfaceAndCategorie(payeSim.getTerrain().getSurface(), date, payeSim.getTerrain().getCategorie()).get(0);
+	    payeSim.setTauxTNB(taux);
+	    payeSim.setDateTaxeTNB(new Date());
+	    payeSim.setAnnee(annee);
+	    payeSim.setTerrain(terrainService.findByid(idTerrain));
+	    payeSim.setRedevable(terrainService.findByid(idTerrain).getRedevable());
+	    payeSim.setNombreMoisRetard(DateUtils.getMonthsDiff(date));
+	    Double montant =payeSim.getTauxTNB().getMontant()*payeSim.getTerrain().getSurface().doubleValue();
+	    payeSim.setMontant(montant);
+	    Double montantRetard = payeSim.getTauxTNB().getMontantRetard()*payeSim.getTerrain().getSurface().doubleValue()*payeSim.getNombreMoisRetard().doubleValue();
+	    payeSim.setMontantRetard(montantRetard);
+	    payeSim.setMontantTotal(montantRetard+montant);
+		return payeSim;
 	}
 
 }

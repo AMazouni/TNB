@@ -24,7 +24,7 @@ public class TaxeTNB {
 	private Double montant;
 	private Double montantRetard;
 	private Double montantTotal;
-	private int nombreMoisRetard;
+	private Integer nombreMoisRetard;
 	@ManyToOne
 	private TauxTNB tauxTNB;
 	@Temporal(TemporalType.DATE)
@@ -39,10 +39,10 @@ public class TaxeTNB {
 	public void setMontantTotal(Double montantTotal) {
 		this.montantTotal = montantTotal;
 	}
-	public int getNombreMoisRetard() {
+	public Integer getNombreMoisRetard() {
 		return nombreMoisRetard;
 	}
-	public void setNombreMoisRetard(int nombreMoisRetard) {
+	public void setNombreMoisRetard(Integer nombreMoisRetard) {
 		this.nombreMoisRetard = nombreMoisRetard;
 	}
 	public TauxTNB getTauxTNB() {
@@ -93,12 +93,18 @@ public class TaxeTNB {
 	public void setAnnee(Integer annee) {
 		this.annee = annee;
 	}
-	public TaxeTNB(Long id, Terrain terrain, Redevable redevable, Double montant, Date dateTaxeTNB, Integer annee) {
+
+	public TaxeTNB(Long id, Terrain terrain, Redevable redevable, Double montant, Double montantRetard,
+			Double montantTotal, Integer nombreMoisRetard, TauxTNB tauxTNB, Date dateTaxeTNB, Integer annee) {
 		super();
 		this.id = id;
 		this.terrain = terrain;
 		this.redevable = redevable;
 		this.montant = montant;
+		this.montantRetard = montantRetard;
+		this.montantTotal = montantTotal;
+		this.nombreMoisRetard = nombreMoisRetard;
+		this.tauxTNB = tauxTNB;
 		this.dateTaxeTNB = dateTaxeTNB;
 		this.annee = annee;
 	}
