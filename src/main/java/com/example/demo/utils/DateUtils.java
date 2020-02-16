@@ -1,5 +1,6 @@
 package com.example.demo.utils;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -14,6 +15,13 @@ public class DateUtils {
 	 GregorianCalendar calendar = new GregorianCalendar();
 	 calendar.setTimeInMillis(msDiff);
 	 return calendar.get(calendar.MONTH);
+ }
+ public  static Integer getYear(){
+ 	Date d=new Date();
+	 Calendar c=new GregorianCalendar();
+	 c.setTime(d);
+	 return c.get(Calendar.YEAR);
+
  }
  
 }

@@ -12,6 +12,8 @@ public class NotificationType {
 	private Long id;
 	private String libelle;
 	private int numero;
+
+
 	public Long getId() {
 		return id;
 	}
@@ -30,9 +32,8 @@ public class NotificationType {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	public NotificationType(Long id, String libelle, int numero) {
+	public NotificationType(String libelle, int numero) {
 		super();
-		this.id = id;
 		this.libelle = libelle;
 		this.numero = numero;
 	}

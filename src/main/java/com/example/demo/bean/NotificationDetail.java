@@ -1,12 +1,9 @@
 package com.example.demo.bean;
 
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class NotificationDetail {
@@ -16,10 +13,11 @@ public class NotificationDetail {
 	private Double montantRetard;
 	private Double montantTotal;
 	private int moisRetard;
-	@Temporal(TemporalType.DATE)
-	private Date annee;
+	private int annee;
 	@ManyToOne
 	private Notification notification;
+
+
 	public Long getId() {
 		return id;
 	}
@@ -50,10 +48,10 @@ public class NotificationDetail {
 	public void setMoisRetard(int moisRetard) {
 		this.moisRetard = moisRetard;
 	}
-	public Date getAnnee() {
+	public int getAnnee() {
 		return annee;
 	}
-	public void setAnnee(Date annee) {
+	public void setAnnee(int annee) {
 		this.annee = annee;
 	}
 	public Notification getNotification() {
@@ -62,11 +60,10 @@ public class NotificationDetail {
 	public void setNotification(Notification notification) {
 		this.notification = notification;
 	}
-	public NotificationDetail(Long id, Double montantBase, Double montantRetard, Double montantTotal, int moisRetard,
-			Date annee, Notification notification) {
+	public NotificationDetail(Double montantBase, Double montantRetard, Double montantTotal, int moisRetard,
+			int annee, Notification notification) {
 		super();
-		this.id = id;
-		this.montantBase = montantBase;
+		this.montantBase = notification.getMontantBase();
 		this.montantRetard = montantRetard;
 		this.montantTotal = montantTotal;
 		this.moisRetard = moisRetard;

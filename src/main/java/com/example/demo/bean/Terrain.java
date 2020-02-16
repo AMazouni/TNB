@@ -2,11 +2,7 @@ package com.example.demo.bean;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Terrain {
@@ -21,8 +17,17 @@ public class Terrain {
 	@ManyToOne
 	private Categorie categorie;
 	private int dernierAnnePaiement;
-	
-	
+	@OneToOne
+	private Notification notification;
+
+	public Notification getNotification() {
+		return notification;
+	}
+
+	public void setNotification(Notification notification) {
+		this.notification = notification;
+	}
+
 	public Categorie getCategorie() {
 		return categorie;
 	}
@@ -59,13 +64,14 @@ public class Terrain {
 	public void setDernierAnnePaiement(int dernierAnnePaiement) {
 		this.dernierAnnePaiement = dernierAnnePaiement;
 	}
-	public Terrain(long id, BigDecimal surface, Quartier quartier, Redevable redevable, int dernierAnnePaiement) {
+	public Terrain(long id, BigDecimal surface, Quartier quartier, Redevable redevable, int dernierAnnePaiement,Notification notification) {
 		super();
 		this.id = id;
 		this.surface = surface;
 		this.quartier = quartier;
 		this.redevable = redevable;
 		this.dernierAnnePaiement = dernierAnnePaiement;
+		this.notification=notification;
 	}
 	public Terrain() {
 		super();

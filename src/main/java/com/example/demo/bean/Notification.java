@@ -1,33 +1,25 @@
 package com.example.demo.bean;
 
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 public class Notification {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@ManyToOne
 	private NotificationType notificationType;
-	private Redevable redevable;
+	@OneToOne
 	private Terrain terrain;
-	@Temporal(TemporalType.DATE)	
-	private Date anneeDepart;
-	@Temporal(TemporalType.DATE)
-	private Date anneeFin;
+	private int anneeDepart;
+	private int anneeFin;
 	private Double montantBase;
 	private Double montantRetard;
 	private int nombreMoisRetard;
-	@OneToMany(mappedBy = "notification")
-	private List<NotificationDetail> notificationDetails;
+
+
 	public Long getId() {
 		return id;
 	}
@@ -40,28 +32,22 @@ public class Notification {
 	public void setNotificationType(NotificationType notificationType) {
 		this.notificationType = notificationType;
 	}
-	public Redevable getRedevable() {
-		return redevable;
-	}
-	public void setRedevable(Redevable redevable) {
-		this.redevable = redevable;
-	}
 	public Terrain getTerrain() {
 		return terrain;
 	}
 	public void setTerrain(Terrain terrain) {
 		this.terrain = terrain;
 	}
-	public Date getAnneeDepart() {
+	public int getAnneeDepart() {
 		return anneeDepart;
 	}
-	public void setAnneeDepart(Date anneeDepart) {
+	public void setAnneeDepart(int anneeDepart) {
 		this.anneeDepart = anneeDepart;
 	}
-	public Date getAnneeFin() {
+	public int getAnneeFin() {
 		return anneeFin;
 	}
-	public void setAnneeFin(Date anneeFin) {
+	public void setAnneeFin(int anneeFin) {
 		this.anneeFin = anneeFin;
 	}
 	public Double getMontantBase() {
@@ -82,26 +68,16 @@ public class Notification {
 	public void setNombreMoisRetard(int nombreMoisRetard) {
 		this.nombreMoisRetard = nombreMoisRetard;
 	}
-	public List<NotificationDetail> getNotificationDetails() {
-		return notificationDetails;
-	}
-	public void setNotificationDetails(List<NotificationDetail> notificationDetails) {
-		this.notificationDetails = notificationDetails;
-	}
-	public Notification(Long id, NotificationType notificationType, Redevable redevable, Terrain terrain,
-			Date anneeDepart, Date anneeFin, Double montantBase, Double montantRetard, int nombreMoisRetard,
-			List<NotificationDetail> notificationDetails) {
+	public Notification(NotificationType notificationType, Terrain terrain,
+			int anneeDepart, int anneeFin, Double montantBase, Double montantRetard, int nombreMoisRetard) {
 		super();
-		this.id = id;
 		this.notificationType = notificationType;
-		this.redevable = redevable;
 		this.terrain = terrain;
 		this.anneeDepart = anneeDepart;
 		this.anneeFin = anneeFin;
 		this.montantBase = montantBase;
 		this.montantRetard = montantRetard;
 		this.nombreMoisRetard = nombreMoisRetard;
-		this.notificationDetails = notificationDetails;
 	}
 	public Notification() {
 		super();
