@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Repository
+@RestController
 @RequestMapping("/TNB-api/Notification")
 public class NotificationRest {
     @Autowired

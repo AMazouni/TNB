@@ -10,11 +10,16 @@ public class DateUtils {
 	return calendar.getTime();
  }
  public static Integer getMonthsDiff(Date date) {
-	 Date now = new Date();
-	 Long msDiff = now.getTime() - date.getTime();
-	 GregorianCalendar calendar = new GregorianCalendar();
-	 calendar.setTimeInMillis(msDiff);
-	 return calendar.get(calendar.MONTH);
+	 GregorianCalendar calendarDate = new GregorianCalendar();
+	 calendarDate.setTime(date);
+	 GregorianCalendar calendarNow = new GregorianCalendar();
+	 if(calendarDate.get(Calendar.YEAR)==calendarNow.get(Calendar.YEAR)) {
+		 return calendarNow.get(Calendar.MONTH)-calendarDate.get(Calendar.MONTH) ;
+	 }
+	 else {
+		 return (calendarNow.get(Calendar.YEAR)-calendarDate.get(Calendar.YEAR))*12+calendarNow.get(Calendar.MONTH)-calendarDate.get(Calendar.MONTH) ;
+	 }
+	 
  }
  public  static Integer getYear(){
  	Date d=new Date();
