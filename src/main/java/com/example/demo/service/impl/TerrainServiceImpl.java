@@ -59,8 +59,20 @@ public class TerrainServiceImpl implements TerrainService{
 	}
 
 	@Override
-	public void update(Long id, Terrain terrain) {
+	public int update(Long id, Terrain terrain) {
+		if (findByid(id) == null) {
+			return -1;
+		}
+		else {
 		terrainDao.save(terrain);
+		return 1;
+		}
+	}
+
+	@Override
+	public List<Terrain> findByDernierAnnePaiementAndNotificationNotificationTypeNumero(int dernierAnnePaiement,
+			int numero) {
+		return terrainDao.findByDernierAnnePaiementAndNotificationNotificationTypeNumero(dernierAnnePaiement, numero);
 	}
 
 }

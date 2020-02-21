@@ -58,5 +58,9 @@ public class TerrainRest {
 	public void update(@PathVariable("id") Long id,@RequestBody Terrain terrain) {
 		terrainService.update(id, terrain);
 	}
+    @GetMapping(path = "/ma3rftch/dernierAnnePaiement/{dernierAnnePaiement}/numero/{numero}")
+    public List<Terrain> findByDernierAnnePaiementAndNotificationNotificationTypeNumero(@PathVariable("dernierAnnePaiement") int dernierAnnePaiement,@PathVariable("numero") int numero) {
+    	return terrainService.findByDernierAnnePaiementAndNotificationNotificationTypeNumero(dernierAnnePaiement, numero);
+    }
 	
 }

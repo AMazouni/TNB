@@ -6,10 +6,12 @@ import com.example.demo.bean.TaxeTNB;
 import com.example.demo.dao.NotificationDetailDao;
 import com.example.demo.service.facade.NotificationDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class NotificationDetailServiceImpl implements NotificationDetailService {
     @Autowired
     NotificationDetailDao notificationDetailDao;

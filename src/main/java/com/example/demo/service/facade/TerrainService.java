@@ -16,5 +16,6 @@ public interface TerrainService {
 	public List<Terrain> findByQuartierId(Long id);
 	public List<Terrain> findBySurface(BigDecimal surface);
 	public List<Terrain> findByDernierAnnePaiement(int dernierAnnePaiement);
-	public void update(Long id,Terrain terrain);
+	public int update(Long id,Terrain terrain);
+	public List<Terrain> findByDernierAnnePaiementAndNotificationNotificationTypeNumero(int dernierAnnePaiement,int numero);
 }
