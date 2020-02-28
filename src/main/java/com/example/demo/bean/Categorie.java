@@ -1,9 +1,13 @@
 package com.example.demo.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Categorie {
@@ -11,6 +15,10 @@ public class Categorie {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String libelle;
+	@OneToMany(mappedBy = "categorie")
+	List<Terrain> terrains = new ArrayList<Terrain>();
+	@OneToMany(mappedBy = "categorie")
+	List<TauxTNB> tauxTNB = new ArrayList<TauxTNB>();
 	public Long getId() {
 		return id;
 	}

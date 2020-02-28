@@ -1,13 +1,16 @@
 package com.example.demo.bean;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,6 +31,8 @@ public class TauxTNB {
 	private Date dateApp;
 	@Temporal(TemporalType.DATE)
 	private Date dateFinApp;
+	@OneToMany(mappedBy = "tauxTNB")
+	private List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
 	
 	public Long getId() {
 		return id;
@@ -81,6 +86,13 @@ public class TauxTNB {
 	}
 	public void setDatFinApp(Date datefinApp) {
 		this.dateFinApp = datefinApp;
+	}
+	
+	public List<TaxeTNB> getTaxesTNB() {
+		return taxesTNB;
+	}
+	public void setTaxesTNB(List<TaxeTNB> taxesTNB) {
+		this.taxesTNB = taxesTNB;
 	}
 	public TauxTNB(long id, Categorie categorie, BigDecimal surfaceMax, BigDecimal surfaceMin, double montant, Date dateApp,
 			Date datefinApp) {

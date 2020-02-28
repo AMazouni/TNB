@@ -1,6 +1,8 @@
 package com.example.demo.bean;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -19,6 +21,8 @@ public class Terrain {
 	private int dernierAnnePaiement;
 	@OneToOne
 	private Notification notification;
+	@OneToMany(mappedBy = "terrain")
+	List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
 
 	public Notification getNotification() {
 		return notification;

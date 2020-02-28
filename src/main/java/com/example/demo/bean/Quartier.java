@@ -2,11 +2,15 @@ package com.example.demo.bean;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -17,6 +21,8 @@ public class Quartier {
 	private String libelle;
 	@ManyToOne
 	private Secteur secteur;
+	@OneToMany(mappedBy = "quartier")
+	private List<Terrain> terrains = new ArrayList<Terrain>();
 
 	public Long getId() {
 		return id;
@@ -37,6 +43,13 @@ public class Quartier {
 		this.secteur = secteur;
 	}
 	
+	
+	public List<Terrain> getTerrains() {
+		return terrains;
+	}
+	public void setTerrains(List<Terrain> terrains) {
+		this.terrains = terrains;
+	}
 	public Quartier(long id, String libelle, Secteur secteur) {
 		super();
 		this.id = id;

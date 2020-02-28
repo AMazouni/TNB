@@ -1,9 +1,13 @@
 package com.example.demo.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class NotificationType {
@@ -12,6 +16,8 @@ public class NotificationType {
 	private Long id;
 	private String libelle;
 	private int numero;
+	@OneToMany(mappedBy = "notificationType")
+	private List<Notification> notifications = new ArrayList<Notification>();
 
 
 	public Long getId() {
@@ -31,6 +37,12 @@ public class NotificationType {
 	}
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
 	}
 	public NotificationType(String libelle, int numero) {
 		super();

@@ -1,5 +1,6 @@
 package com.example.demo.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -18,6 +19,8 @@ public class Notification {
 	private Double montantBase;
 	private Double montantRetard;
 	private int nombreMoisRetard;
+	@OneToMany(mappedBy = "notification")
+	List<NotificationDetail> notificationDetails = new ArrayList<NotificationDetail>();
 
 
 	public Long getId() {
@@ -67,6 +70,13 @@ public class Notification {
 	}
 	public void setNombreMoisRetard(int nombreMoisRetard) {
 		this.nombreMoisRetard = nombreMoisRetard;
+	}
+	
+	public List<NotificationDetail> getNotificationDetails() {
+		return notificationDetails;
+	}
+	public void setNotificationDetails(List<NotificationDetail> notificationDetails) {
+		this.notificationDetails = notificationDetails;
 	}
 	public Notification(NotificationType notificationType, Terrain terrain,
 			int anneeDepart, int anneeFin, Double montantBase, Double montantRetard, int nombreMoisRetard) {

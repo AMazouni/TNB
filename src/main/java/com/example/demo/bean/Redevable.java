@@ -2,11 +2,15 @@ package com.example.demo.bean;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -18,6 +22,10 @@ public class Redevable {
 	private String nom;
 	@ManyToOne
 	private TypeRedevable typeRedevable;
+	@OneToMany(mappedBy = "redevable")
+	List<Terrain> terrains = new ArrayList<Terrain>();
+	@OneToMany(mappedBy = "redevable")
+	List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
 	
 	
 	public Long getId() {
@@ -45,6 +53,19 @@ public class Redevable {
 		this.typeRedevable = typeRedevable;
 	}
 	
+	
+	public List<Terrain> getTerrains() {
+		return terrains;
+	}
+	public void setTerrains(List<Terrain> terrains) {
+		this.terrains = terrains;
+	}
+	public List<TaxeTNB> getTaxesTNB() {
+		return taxesTNB;
+	}
+	public void setTaxesTNB(List<TaxeTNB> taxesTNB) {
+		this.taxesTNB = taxesTNB;
+	}
 	public Redevable(Long id, String identifiant, String nom, TypeRedevable typeRedevable) {
 		super();
 		this.id = id;
