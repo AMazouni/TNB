@@ -15,7 +15,7 @@ public class Secteur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String Libelle;
+	private String libelle;
 	@OneToMany (mappedBy = "secteur")
 	private List<Quartier> quartiers = new ArrayList<Quartier>();
 
@@ -26,10 +26,10 @@ public class Secteur {
 		this.id = id;
 	}
 	public String getLibelle() {
-		return Libelle;
+		return libelle;
 	}
 	public void setLibelle(String libelle) {
-		Libelle = libelle;
+		this.libelle = libelle;
 	}
 	
 	
@@ -42,7 +42,7 @@ public class Secteur {
 	public Secteur(Long id, String libelle) {
 		super();
 		this.id = id;
-		Libelle = libelle;
+		this.libelle = libelle;
 	}
 	public Secteur() {
 		super();
