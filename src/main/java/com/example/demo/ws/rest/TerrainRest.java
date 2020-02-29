@@ -38,13 +38,13 @@ public class TerrainRest {
 	public void save(@RequestBody Terrain terrain) {
 		terrainService.save(terrain);
 	}
-    @GetMapping("/findByRedevableId/{id}")
-	public List<Terrain> findbyRedevableId(@PathVariable("id") Long id) {
-		return terrainService.findbyRedevableId(id);
+    @GetMapping("/findByRedevableLibelle/{libelle}")
+	public List<Terrain> findbyRedevableLibelle(@PathVariable("libelle") String libelle) {
+		return terrainService.findbyRedevableLibelle(libelle);
 	}
-    @GetMapping("/findByQuartierId/{id}")
-	public List<Terrain> findByQuartierId(@PathVariable("id") Long id) {
-		return terrainService.findByQuartierId(id);
+    @GetMapping("/findByQuartierLibelle/{libelle}")
+	public List<Terrain> findByQuartierLibelle(@PathVariable("libelle") String libelle) {
+		return terrainService.findByQuartierLibelle(libelle);
 	}
     @GetMapping("/findBySurface/{surface}")
 	public List<Terrain> findBySurface(@PathVariable("surface") BigDecimal surface) {
@@ -58,9 +58,26 @@ public class TerrainRest {
 	public void update(@PathVariable("id") Long id,@RequestBody Terrain terrain) {
 		terrainService.update(id, terrain);
 	}
-    @GetMapping(path = "/ma3rftch/dernierAnnePaiement/{dernierAnnePaiement}/numero/{numero}")
+    @GetMapping(path = "/findByDernierAnnePaiementAndNotificationType/dernierAnnePaiement/{dernierAnnePaiement}/numero/{numero}")
     public List<Terrain> findByDernierAnnePaiementAndNotificationNotificationTypeNumero(@PathVariable("dernierAnnePaiement") int dernierAnnePaiement,@PathVariable("numero") int numero) {
     	return terrainService.findByDernierAnnePaiementAndNotificationNotificationTypeNumero(dernierAnnePaiement, numero);
     }
+    @GetMapping(path = "/findByDernierAnnePaiementAndRedevableIdentifiant/dernierAnnePaiement/{dernierAnnePaiement}/identifiant/{identifiant}")
+	public List<Terrain> findByDernierAnnePaiementAndRedevableIdentifiant(@PathVariable("dernierAnnePaiement") int dernierAnnePaiement,@PathVariable("identifiant") String identifiant) {
+		return terrainService.findByDernierAnnePaiementAndRedevableIdentifiant(dernierAnnePaiement, identifiant);
+	}
+    @GetMapping(path = "/findByCategorie/{libelle}")
+	public List<Terrain> findByCategorieLibelle(@PathVariable("libelle") String libelle) {
+		return terrainService.findByCategorieLibelle(libelle);
+	}
+    @GetMapping(path = "/findByDernierAnnePaiementAndQuartier/dernierAnnePaiement/{dernierAnnePaiement}/Quartier/{libelle}")
+	public List<Terrain> findByDernierAnnePaiementAndQuartierLibelle(@PathVariable("dernierAnnePaiement") int dernierAnnePaiement,@PathVariable("libelle") String Libelle) {
+		return terrainService.findByDernierAnnePaiementAndQuartierLibelle(dernierAnnePaiement, Libelle);
+	}
+    @GetMapping(path = "/findByDernierAnnePaiementAndSecteur/dernierAnnePaiement/{dernierAnnePaiement}/Secteur/{libelle}")
+	public List<Terrain> findByDernierAnnePaiementAndQuartierSecteurLibelle(@PathVariable("dernierAnnePaiement") int dernierAnnePaiement,@PathVariable("libelle") String Libelle) {
+		return terrainService.findByDernierAnnePaiementAndQuartierSecteurLibelle(dernierAnnePaiement, Libelle);
+	}
+    
 	
 }

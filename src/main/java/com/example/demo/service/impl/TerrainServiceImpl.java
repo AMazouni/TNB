@@ -39,16 +39,6 @@ public class TerrainServiceImpl implements TerrainService{
 	}
 
 	@Override
-	public List<Terrain> findbyRedevableId(Long id) {
-		return terrainDao.findByRedevableId(id);
-	}
-
-	@Override
-	public List<Terrain> findByQuartierId(Long id) {
-		return terrainDao.findByQuartierId(id);
-	}
-
-	@Override
 	public List<Terrain> findBySurface(BigDecimal surface) {
 		return terrainDao.findBySurface(surface);
 	}
@@ -73,6 +63,37 @@ public class TerrainServiceImpl implements TerrainService{
 	public List<Terrain> findByDernierAnnePaiementAndNotificationNotificationTypeNumero(int dernierAnnePaiement,
 			int numero) {
 		return terrainDao.findByDernierAnnePaiementAndNotificationNotificationTypeNumero(dernierAnnePaiement, numero);
+	}
+
+	@Override
+	public List<Terrain> findbyRedevableLibelle(String identifiant) {
+		return terrainDao.findByRedevableIdentifiant(identifiant);
+	}
+
+	@Override
+	public List<Terrain> findByQuartierLibelle(String libelle) {
+		return terrainDao.findByQuartierLibelle(libelle);
+	}
+
+	@Override
+	public List<Terrain> findByDernierAnnePaiementAndRedevableIdentifiant(int dernierAnnePaiement, String identifiant) {
+		return terrainDao.findByDernierAnnePaiementAndRedevableIdentifiant(dernierAnnePaiement, identifiant);
+	}
+
+	@Override
+	public List<Terrain> findByCategorieLibelle(String libelle) {
+		return terrainDao.findByCategorieLibelle(libelle);
+	}
+
+	@Override
+	public List<Terrain> findByDernierAnnePaiementAndQuartierLibelle(int dernierAnnePaiement, String Libelle) {
+		return terrainDao.findByDernierAnnePaiementAndQuartierLibelle(dernierAnnePaiement, Libelle);
+	}
+
+	@Override
+	public List<Terrain> findByDernierAnnePaiementAndQuartierSecteurLibelle(int dernierAnnePaiement, String Libelle) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
