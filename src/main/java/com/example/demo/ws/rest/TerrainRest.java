@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.bean.Terrain;
 import com.example.demo.service.facade.TerrainService;
 
-@Repository
+@RestController
 @RequestMapping("/TNB-Api/Terrain")
 public class TerrainRest {
 	@Autowired

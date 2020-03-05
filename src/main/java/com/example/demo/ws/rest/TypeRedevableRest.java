@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.bean.TypeRedevable;
 import com.example.demo.service.facade.TypeRedevableService;
 
-@Repository
+@RestController
 @RequestMapping("/TNB-Api/typeredevable")
 public class TypeRedevableRest {
 

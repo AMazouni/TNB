@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.bean.TypeRedevable;
@@ -9,7 +10,7 @@ import com.example.demo.dao.TypeRedevableDao;
 import com.example.demo.service.facade.TypeRedevableService;
 @Service
 public class TypeRedevableServiceImpl implements TypeRedevableService {
-
+@Autowired
 	TypeRedevableDao typeRedevableDao;
 
 	@Override

@@ -13,6 +13,7 @@ import com.example.demo.service.facade.TerrainService;
 public class TerrainServiceImpl implements TerrainService{
 	@Autowired
 	TerrainDao terrainDao;
+	
 	@Override
 	public List<Terrain> findAll() {
 		return terrainDao.findAll();
@@ -95,5 +96,11 @@ public class TerrainServiceImpl implements TerrainService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Terrain> findByRedevableIdentifiant(String identifiant) {
+		return terrainDao.findByRedevableIdentifiant(identifiant);
+	}
+
 
 }
