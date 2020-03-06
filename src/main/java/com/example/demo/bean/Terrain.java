@@ -4,8 +4,18 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property ="id")
 @Entity
 public class Terrain {
 	@Id
@@ -68,15 +78,20 @@ public class Terrain {
 	public void setDernierAnnePaiement(int dernierAnnePaiement) {
 		this.dernierAnnePaiement = dernierAnnePaiement;
 	}
-	public Terrain(long id, BigDecimal surface, Quartier quartier, Redevable redevable, int dernierAnnePaiement,Notification notification) {
+	
+	public Terrain(long id, BigDecimal surface, Quartier quartier, Redevable redevable, Categorie categorie,
+			int dernierAnnePaiement, Notification notification, List<TaxeTNB> taxesTNB) {
 		super();
 		this.id = id;
 		this.surface = surface;
 		this.quartier = quartier;
 		this.redevable = redevable;
+		this.categorie = categorie;
 		this.dernierAnnePaiement = dernierAnnePaiement;
-		this.notification=notification;
+		this.notification = notification;
+		this.taxesTNB = taxesTNB;
 	}
+
 	public Terrain() {
 		super();
 	}
