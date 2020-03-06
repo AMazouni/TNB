@@ -2,13 +2,11 @@ package com.example.demo.service.impl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.bean.Notification;
 import com.example.demo.bean.Redevable;
 import com.example.demo.bean.Terrain;
 import com.example.demo.bean.TypeRedevable;
@@ -82,6 +80,10 @@ public class RedevableServiceImpl implements RedevableService {
 	public List<Redevable> findByTypeRedevableId(Long id) {
 		return redevableDao.findByTypeRedevableId(id);
 	}
+	@Override
+	public List<Redevable> findByTypeRedevableLibelle(String libelle) {
+		return redevableDao.findByTypeRedevableLibelle(libelle);
+	}
 
 	@Override
 	public List<Redevable> findAll() {
@@ -128,6 +130,22 @@ public class RedevableServiceImpl implements RedevableService {
 	public Redevable findByTerrain(Terrain terrain) {
 		Redevable redevable = findById(terrain.getRedevable().getId());
 		return redevable;
+	}
+	@Override
+	public List<Redevable> findRedevablePayer() {
+		List<Redevable> redevables = findAll();
+		List<Redevable> redevablePayer = new ArrayList<Redevable>();
+		Calendar calendrier =Calendar.getInstance();
+		int anneeEnCours = calendrier.get(Calendar.YEAR);
+		for (Redevable redevable : redevables) {
+			List<Terrain> terrains = terrainService.findByRedevableIdentifiant(redevable.getIdentifiant());
+			for (Terrain terrain : terrains) {
+				if (terrain.getDernierAnnePaiement() == anneeEnCours) {
+					redevablePayer.add(redevable);
+				}
+			}
+		}
+		return redevablePayer;
 	}
 
 }

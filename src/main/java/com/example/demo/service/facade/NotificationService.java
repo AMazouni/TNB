@@ -1,9 +1,8 @@
 package com.example.demo.service.facade;
 
-import com.example.demo.bean.Notification;
-
-import java.util.Date;
 import java.util.List;
+
+import com.example.demo.bean.Notification;
 
 public interface NotificationService {
     public List<Notification> findByNotificationTypeNumero(int numero);
