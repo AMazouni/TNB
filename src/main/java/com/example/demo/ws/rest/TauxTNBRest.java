@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.bean.Categorie;
 import com.example.demo.bean.TauxTNB;
 import com.example.demo.service.facade.TauxTNBService;
 
-@Repository
+@RestController
 @RequestMapping("/TNB-Api/typeredevable")
 public class TauxTNBRest {
 

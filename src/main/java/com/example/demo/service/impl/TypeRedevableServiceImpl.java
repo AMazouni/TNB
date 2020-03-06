@@ -10,15 +10,15 @@ import com.example.demo.dao.TypeRedevableDao;
 import com.example.demo.service.facade.TypeRedevableService;
 @Service
 public class TypeRedevableServiceImpl implements TypeRedevableService {
-@Autowired
+	@Autowired
 	TypeRedevableDao typeRedevableDao;
 
 	@Override
 	public TypeRedevable findById(Long Id) {
-		if (!typeRedevableDao.findById(Id).isPresent())
-			return null;
-		else
+		if (typeRedevableDao.findById(Id).isPresent())
 			return typeRedevableDao.findById(Id).get();
+		else
+			return null;
 	}
 
 	@Override

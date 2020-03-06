@@ -3,7 +3,6 @@ package com.example.demo.ws.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +30,7 @@ public class TypeRedevableRest {
 	public List<TypeRedevable> findAll(){
 		return typeRedevableService.findAll();
 	}
-	@PostMapping(path = "/findbytyperedevable")
+	@PostMapping("/save")
 	public int save(@RequestBody TypeRedevable typeredevable) {
 		return typeRedevableService.save(typeredevable);
 	}
@@ -44,4 +43,5 @@ public class TypeRedevableRest {
 	public int update(@RequestBody TypeRedevable typeredevable) {
 	 return typeRedevableService.update(typeredevable);	
 	}
+	
 }
