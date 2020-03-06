@@ -25,13 +25,15 @@ public interface RedevableService {
 	public int deleteByIdentifiant(String identifiant);
 
 	public Redevable findByNom(String nom);
-	
+
 	public List<Redevable> findRedevableNonPayer();
-   
+
 	public Boolean testpaymentRedevable(Redevable redevable);
-	
+
 	public Redevable findByTerrain(Terrain terrain);
-	
-	
+
+	public List<Redevable> findByTypeRedevableLibelle(String libelle);
+
+	public List<Redevable> findRedevablePayer();
 
 }

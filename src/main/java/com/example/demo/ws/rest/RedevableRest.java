@@ -23,7 +23,14 @@ public class RedevableRest {
 
 	@Autowired
 	RedevableService redevableService;
-	
+	@GetMapping("/findByTypeRedevableLibelle/{libelle}")
+	public List<Redevable> findByTypeRedevableLibelle(@PathVariable String libelle) {
+		return redevableService.findByTypeRedevableLibelle(libelle);
+	}
+	@GetMapping("/findRedevablePayer")
+	public List<Redevable> findRedevablePayer() {
+		return redevableService.findRedevablePayer();
+	}
 	@GetMapping("/findByNom/{nom}")
 	public Redevable findByNom(@PathVariable String nom) {
 		return redevableService.findByNom(nom);
