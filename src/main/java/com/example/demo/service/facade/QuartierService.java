@@ -10,6 +10,6 @@ public interface QuartierService {
 	public Quartier findById(Long id);
 	public List<Quartier> findAll();
 	public int deleteById(Long id);
-	public void save(Quartier quartier);
+	public int save(Quartier quartier);
 	public void update(Long id,Quartier quartier);
 }

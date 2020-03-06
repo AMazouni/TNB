@@ -8,11 +8,20 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.bean.Terrain;
 import com.example.demo.dao.TerrainDao;
+import com.example.demo.service.facade.CategorieService;
+import com.example.demo.service.facade.QuartierService;
+import com.example.demo.service.facade.RedevableService;
 import com.example.demo.service.facade.TerrainService;
 @Service
 public class TerrainServiceImpl implements TerrainService{
 	@Autowired
 	TerrainDao terrainDao;
+	@Autowired
+	RedevableService redevableService;
+	@Autowired
+	QuartierService quartierService;
+	@Autowired
+	CategorieService categorieService;
 	@Override
 	public List<Terrain> findAll() {
 		return terrainDao.findAll();
@@ -34,8 +43,14 @@ public class TerrainServiceImpl implements TerrainService{
 	}
 
 	@Override
-	public void save(Terrain terrain) {
-		terrainDao.save(terrain);
+	public int save(Terrain terrain) {
+		if (quartierService.findById(terrain.getQuartier().getId()) != null &&
+			redevableService.findById(terrain.getRedevable().getId()) != null &&
+			categorieService.findById(terrain.getCategorie().getId()) != null)
+		{ terrainDao.save(terrain);
+		return 1;
+		 }
+		else return -1;
 	}
 
 	@Override

@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 import com.example.demo.bean.Quartier;
 import com.example.demo.dao.QuartierDao;
 import com.example.demo.service.facade.QuartierService;
+import com.example.demo.service.facade.SecteurService;
 @Service
 public class QuartierServiceImpl implements QuartierService {
 	@Autowired
 	QuartierDao quartierDao;
+	@Autowired
+	SecteurService secteurService;
 	@Override
 	public List<Quartier> findBySecteurId(Long secteurId) {
 		return quartierDao.findBySecteurId(secteurId);
@@ -43,8 +46,12 @@ public class QuartierServiceImpl implements QuartierService {
 
 	
 	@Override
-	public void save(Quartier quartier) {
-		quartierDao.save(quartier);
+	public int save(Quartier quartier) {
+		if (secteurService.findByid(quartier.getSecteur().getId()) != null) {
+			quartierDao.save(quartier);
+			return 1;
+		}
+		else return -1;
 	}
 
 	@Override
