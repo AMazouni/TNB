@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.bean.Redevable;
+import com.example.demo.bean.Terrain;
 import com.example.demo.bean.TypeRedevable;
 import com.example.demo.service.facade.RedevableService;
 
@@ -22,18 +23,35 @@ public class RedevableRest {
 
 	@Autowired
 	RedevableService redevableService;
+	
+	@GetMapping("/findByNom/{nom}")
+	public Redevable findByNom(@PathVariable String nom) {
+		return redevableService.findByNom(nom);
+	}
+	@GetMapping("/findRedevableNonPayer")
+	public List<Redevable> findRedevableNonPayer() {
+		return redevableService.findRedevableNonPayer();
+	}
+	@GetMapping("/testpaymentRedevable")
+	public Boolean testpaymentRedevable(@RequestBody Redevable redevable) {
+		return redevableService.testpaymentRedevable(redevable);
+	}
+	@GetMapping("/findByTerrain")
+	public Redevable findByTerrain(@RequestBody Terrain terrain) {
+		return redevableService.findByTerrain(terrain);
+	}
 
 	@GetMapping("/findByid/{id}")
 	public Redevable findById(@PathVariable("id") Long id) {
 		return redevableService.findById(id);
 	}
 
-	@PostMapping(path = "/save")
+	@PostMapping("/save")
 	public int save(@RequestBody Redevable redevable) {
 		return redevableService.save(redevable);
 	}
 
-	@PutMapping(path = "/update")
+	@PutMapping("/update")
 	public int update(@RequestBody Redevable redevable) {
 		return redevableService.update(redevable);
 	}
@@ -48,17 +66,17 @@ public class RedevableRest {
 		return redevableService.findAll();
 	}
 
-	@PostMapping(path = "/findbytyperedevable")
+	@PostMapping("/findbytyperedevable")
 	public List<Redevable> findByTypeRedevable(@RequestBody TypeRedevable type) {
 		return redevableService.findByTypeRedevable(type);
 	}
 
-	@GetMapping(path = "/findbytyperedevable/{id}")
+	@GetMapping("/findbytyperedevable/{id}")
 	public List<Redevable> findByTypeRedevableId(@PathVariable("id") Long id) {
 		return redevableService.findByTypeRedevableId(id);
 	}
 
-	@DeleteMapping(path = "/deletebyidentifiant/{id}")
+	@DeleteMapping("/deletebyidentifiant/{id}")
 	public int deleteByIdentifiant(@PathVariable("id") String identifiant) {
 		return redevableService.deleteByIdentifiant(identifiant);
 	}

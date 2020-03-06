@@ -111,4 +111,10 @@ public class TerrainServiceImpl implements TerrainService{
 		return null;
 	}
 
+	@Override
+	public List<Terrain> findByRedevableIdentifiant(String identifiant) {
+		return terrainDao.findByRedevableIdentifiant(identifiant);
+	}
+
+
 }

@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 
 @Entity
 public class Redevable {
@@ -23,6 +26,7 @@ public class Redevable {
 	@ManyToOne
 	private TypeRedevable typeRedevable;
 	@OneToMany(mappedBy = "redevable")
+	@JsonProperty(access= Access.WRITE_ONLY)
 	List<Terrain> terrains = new ArrayList<Terrain>();
 	@OneToMany(mappedBy = "redevable")
 	List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
