@@ -11,5 +11,6 @@ public interface NotificationService {
     public List<Notification> findByAnneeFin(int anneeFin);
     public Notification findByTerrainId(Long id);
     public int giveNotification(Long idTerrain);
+	public List<NotificationService> findAll();
 
 }

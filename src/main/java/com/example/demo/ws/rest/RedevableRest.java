@@ -1,8 +1,10 @@
 package com.example.demo.ws.rest;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,23 @@ public class RedevableRest {
 
 	@Autowired
 	RedevableService redevableService;
+	
+	@GetMapping("findRedevableNonPayerAyantnombreRetard/{nombreMoisDeRetard}")
+	public List<Redevable> findRedevableNonPayerAyantnombreRetard(@PathVariable Integer nombreMoisDeRetard) {
+		return redevableService.findRedevableNonPayerAyantnombreRetard(nombreMoisDeRetard);
+	}
+	@GetMapping("findByTypeRedevableAndNonPayer/{typeRedevable}")
+	public List<Redevable> findByTypeRedevableAndNonPayer(@PathVariable TypeRedevable typeRedevable) {
+		return redevableService.findByTypeRedevableAndNonPayer(typeRedevable);
+	}
+	@GetMapping("findRedevablePayerdans/{date}")
+	public List<Redevable> findRedevablePayerdans(@DateTimeFormat(pattern =  "dd/MM/yyyy") Date date) {
+		return redevableService.findRedevablePayerdans(date);
+	}
+	@GetMapping("findRedevableAyantNotification/{numeroNotification}")
+	public List<Redevable> findRedevableAyantNotification(@PathVariable int numeroNotification) {
+		return redevableService.findRedevableAyantNotification(numeroNotification);
+	}
 	@GetMapping("/findByTypeRedevableLibelle/{libelle}")
 	public List<Redevable> findByTypeRedevableLibelle(@PathVariable String libelle) {
 		return redevableService.findByTypeRedevableLibelle(libelle);

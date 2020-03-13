@@ -1,5 +1,6 @@
 package com.example.demo.service.facade;
 
+import java.util.Date;
 import java.util.List;
 
 import com.example.demo.bean.Redevable;
@@ -36,4 +37,11 @@ public interface RedevableService {
 
 	public List<Redevable> findRedevablePayer();
 
+	public List<Redevable> findRedevableAyantNotification(int numeroNotification);
+
+	public List<Redevable> findByTypeRedevableAndNonPayer(TypeRedevable typeRedevable);
+
+	public List<Redevable> findRedevablePayerdans(Date date);
+
+	public List<Redevable> findRedevableNonPayerAyantnombreRetard(Integer nombreMoisDeRetard);
 }

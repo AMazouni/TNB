@@ -28,5 +28,13 @@ public class DateUtils {
 	 return c.get(Calendar.YEAR);
 
  }
- 
+ public static Boolean compareDate(Date date1,Date date2) {
+		long milliSeconde1 = date1.getTime();
+		long milliSeconde2 = date2.getTime();
+		if(milliSeconde1==milliSeconde2)
+			return true;
+		else {
+			return false;
+		}
+ }
 }

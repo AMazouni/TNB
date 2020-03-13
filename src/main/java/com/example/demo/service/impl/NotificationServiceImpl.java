@@ -80,4 +80,10 @@ public class NotificationServiceImpl implements NotificationService {
         notificationDetailService.initNotificationDetails(notification);
         return 1;
     }
+
+	@Override
+	public List<NotificationService> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
