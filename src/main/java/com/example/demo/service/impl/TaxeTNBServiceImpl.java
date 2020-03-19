@@ -115,4 +115,9 @@ public class TaxeTNBServiceImpl implements TaxeTNBService {
 		return payeSim;
 	}
 
+	@Override
+	public int deleteByTerrainId(Long id) {
+		return taxeTNBDao.deleteByTerrainId(id);
+	}
+
 }

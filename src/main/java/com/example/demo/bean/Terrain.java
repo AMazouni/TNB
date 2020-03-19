@@ -11,11 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property ="id")
 @Entity
 public class Terrain {
 	@Id
@@ -31,6 +29,7 @@ public class Terrain {
 	private int dernierAnnePaiement;
 	@OneToOne
 	private Notification notification;
+	@JsonProperty(access=Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "terrain")
 	List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
 

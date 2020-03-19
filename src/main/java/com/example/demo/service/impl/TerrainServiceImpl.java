@@ -11,6 +11,7 @@ import com.example.demo.dao.TerrainDao;
 import com.example.demo.service.facade.CategorieService;
 import com.example.demo.service.facade.QuartierService;
 import com.example.demo.service.facade.RedevableService;
+import com.example.demo.service.facade.TaxeTNBService;
 import com.example.demo.service.facade.TerrainService;
 @Service
 public class TerrainServiceImpl implements TerrainService{
@@ -22,6 +23,8 @@ public class TerrainServiceImpl implements TerrainService{
 	QuartierService quartierService;
 	@Autowired
 	CategorieService categorieService;
+	@Autowired
+	TaxeTNBService taxeTNBservice;
 	@Override
 	public List<Terrain> findAll() {
 		return terrainDao.findAll();
@@ -36,6 +39,7 @@ public class TerrainServiceImpl implements TerrainService{
 
 	@Override
 	public int deleteById(Long id) {
+		taxeTNBservice.deleteByTerrainId(id);
 		terrainDao.deleteById(id);
 		if (findByid(id) == null) {
 			return 1;

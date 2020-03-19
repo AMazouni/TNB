@@ -11,5 +11,5 @@ public interface QuartierService {
 	public List<Quartier> findAll();
 	public int deleteById(Long id);
 	public int save(Quartier quartier);
-	public void update(Long id,Quartier quartier);
+	public int update(Long id,Quartier quartier);
 }

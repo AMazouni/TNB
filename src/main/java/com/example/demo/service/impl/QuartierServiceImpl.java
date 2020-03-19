@@ -6,15 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.bean.Quartier;
+import com.example.demo.bean.Terrain;
 import com.example.demo.dao.QuartierDao;
 import com.example.demo.service.facade.QuartierService;
 import com.example.demo.service.facade.SecteurService;
+import com.example.demo.service.facade.TerrainService;
 @Service
 public class QuartierServiceImpl implements QuartierService {
 	@Autowired
 	QuartierDao quartierDao;
 	@Autowired
 	SecteurService secteurService;
+	@Autowired
+	TerrainService terrainService;
 	@Override
 	public List<Quartier> findBySecteurId(Long secteurId) {
 		return quartierDao.findBySecteurId(secteurId);
@@ -38,6 +42,10 @@ public class QuartierServiceImpl implements QuartierService {
 
 	@Override
 	public int deleteById(Long id) {
+		Quartier foundQuartier = findById(id);
+		for (Terrain terrain : foundQuartier.getTerrains()) {
+			terrainService.deleteById(terrain.getId());
+		}
 		quartierDao.deleteById(id);
 		if (findById(id) == null) {
 			return 1;
@@ -55,8 +63,12 @@ public class QuartierServiceImpl implements QuartierService {
 	}
 
 	@Override
-	public void update(Long id,Quartier quartier) {
+	public int update(Long id,Quartier quartier) {
+		if (findById(id) == null) {
+			return -1;
+		} else {
 	    quartierDao.save(quartier);
+	    return 1;
+		}
 	}
-
 }

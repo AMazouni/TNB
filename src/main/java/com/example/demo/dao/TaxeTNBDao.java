@@ -21,5 +21,7 @@ public interface TaxeTNBDao extends JpaRepository<TaxeTNB, Long> {
 	public List<TaxeTNB> findByRedevableIdentifiant(String identifiant);
 
 	public List<TaxeTNB> findByAnnee(Integer annee);
+	
+	public int deleteByTerrainId(Long id);
 
 }
