@@ -59,6 +59,15 @@ public class TaxeTNBServiceImpl implements TaxeTNBService {
 	public int save(TaxeTNB taxeTNB) {
 		if (this.findById(taxeTNB.getId()) != null)
 			return 0;
+		else if (taxeTNB.getAnnee() == null || taxeTNB.getDateTaxeTNB() == null || taxeTNB.getMontant() == null
+				|| taxeTNB.getMontantRetard() == null || taxeTNB.getMontantTotal() == null
+				|| taxeTNB.getNombreMoisRetard() == null || taxeTNB.getRedevable() == null
+				|| taxeTNB.getTauxTNB() == null || taxeTNB.getTerrain() == null)
+			return -1;
+		else if (redevableService.findByIdentifiant(taxeTNB.getRedevable().getIdentifiant()) == null
+				|| terrainService.findByid(taxeTNB.getTerrain().getId()) == null
+				|| tauxTNBService.findById(taxeTNB.getTauxTNB().getId()) == null)
+			return -2;
 		taxeTNBDao.save(taxeTNB);
 		return 1;
 	}
@@ -96,28 +105,41 @@ public class TaxeTNBServiceImpl implements TaxeTNBService {
 	}
 
 	@Override
-	public TaxeTNB payerSim(Integer annee, Long idTerrain) {
+	public TaxeTNB payerSim(TaxeTNB taxeTNB) {
+		Integer annee = taxeTNB.getAnnee();
+		Long idTerrain = taxeTNB.getTerrain().getId();
 		TaxeTNB payeSim = new TaxeTNB();
 		payeSim.setTerrain(terrainService.findByid(idTerrain));
-		Date date= DateUtils.getDateByYear(annee);
-		TauxTNB taux = tauxTNBService.findByDateAndSurfaceAndCategorie(payeSim.getTerrain().getSurface(), date, payeSim.getTerrain().getCategorie()).get(0);
-	    payeSim.setTauxTNB(taux);
-	    payeSim.setDateTaxeTNB(new Date());
-	    payeSim.setAnnee(annee);
-	    payeSim.setTerrain(terrainService.findByid(idTerrain));
-	    payeSim.setRedevable(terrainService.findByid(idTerrain).getRedevable());
-	    payeSim.setNombreMoisRetard(DateUtils.getMonthsDiff(date));
-	    Double montant =payeSim.getTauxTNB().getMontant()*payeSim.getTerrain().getSurface().doubleValue();
-	    payeSim.setMontant(montant);
-	    Double montantRetard = payeSim.getTauxTNB().getMontantRetard()*payeSim.getTerrain().getSurface().doubleValue()*payeSim.getNombreMoisRetard().doubleValue();
-	    payeSim.setMontantRetard(montantRetard);
-	    payeSim.setMontantTotal(montantRetard+montant);
+		Date date = DateUtils.getDateByYear(annee);
+		TauxTNB taux = tauxTNBService.findByDateAndSurfaceAndCategorie(payeSim.getTerrain().getSurface(), date,
+				payeSim.getTerrain().getCategorie()).get(0);
+		payeSim.setTauxTNB(taux);
+		payeSim.setDateTaxeTNB(new Date());
+		payeSim.setAnnee(annee);
+		payeSim.setTerrain(terrainService.findByid(idTerrain));
+		payeSim.setRedevable(terrainService.findByid(idTerrain).getRedevable());
+		payeSim.setNombreMoisRetard(DateUtils.getMonthsDiff(date));
+		Double montant = payeSim.getTauxTNB().getMontant() * payeSim.getTerrain().getSurface().doubleValue();
+		payeSim.setMontant(montant);
+		Double montantRetard = payeSim.getTauxTNB().getMontantRetard() * payeSim.getTerrain().getSurface().doubleValue()
+				* payeSim.getNombreMoisRetard().doubleValue();
+		payeSim.setMontantRetard(montantRetard);
+		payeSim.setMontantTotal(montantRetard + montant);
 		return payeSim;
 	}
+
 
 	@Override
 	public int deleteByTerrainId(Long id) {
 		return taxeTNBDao.deleteByTerrainId(id);
 	}
+
+	@Override
+	public int payer(TaxeTNB taxeTNB) {
+		
+		return save(payerSim(taxeTNB));
+	}
+
+
 
 }
