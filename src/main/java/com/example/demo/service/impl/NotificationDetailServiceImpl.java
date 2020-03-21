@@ -39,7 +39,10 @@ public class NotificationDetailServiceImpl implements NotificationDetailService 
     public void initNotificationDetails(Notification notification) {
         for (int i = notification.getAnneeDepart(); i <notification.getAnneeFin()+1 ; i++) {
             if (findByNotificationIdAndAnnee(notification.getId(),i)==null){
-                TaxeTNB taxeTNB=taxeTNBService.payerSim(i,notification.getTerrain().getId());
+            	TaxeTNB tmp=new TaxeTNB();
+                tmp.setAnnee(i);
+                tmp.setTerrain(notification.getTerrain());
+                TaxeTNB taxeTNB=taxeTNBService.payerSim(tmp);
                 NotificationDetail notificationDetail=new NotificationDetail(notification.getMontantBase(),taxeTNB.getMontantRetard(),taxeTNB.getMontantTotal(),taxeTNB.getNombreMoisRetard(),i,notification);
                 notificationDetailDao.save(notificationDetail);
             }

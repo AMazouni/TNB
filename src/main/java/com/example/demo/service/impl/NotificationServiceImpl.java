@@ -54,7 +54,10 @@ public class NotificationServiceImpl implements NotificationService {
     public int giveNotification(Long idTerrain) {
         Terrain terrain=terrainService.findByid(idTerrain);
         notificationTypeService.initNotificationType();
-        TaxeTNB taxeTNB=taxeTNBService.payerSim(terrain.getDernierAnnePaiement(),idTerrain);
+        TaxeTNB tmp=new TaxeTNB();
+        tmp.setAnnee(terrain.getDernierAnnePaiement());
+        tmp.setTerrain(terrain);
+        TaxeTNB taxeTNB=taxeTNBService.payerSim(tmp);
         if (terrain.getNotification()==null){
             Notification notification=new Notification(notificationTypeService.findByNumero(1),terrain,terrain.getDernierAnnePaiement(), DateUtils.getYear(),taxeTNB.getMontant(),taxeTNB.getMontantRetard(),taxeTNB.getNombreMoisRetard());
             notificationDao.save(notification);
