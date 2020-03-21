@@ -12,7 +12,6 @@ public interface TerrainService {
 	public Terrain findByid(Long id);
 	public int deleteById(Long id);
 	public int save(Terrain terrain);
-	public List<Terrain> findbyRedevableLibelle(String libelle);
 	public List<Terrain> findByRedevableIdentifiant(String identifiant);
 	public List<Terrain> findByQuartierLibelle(String libelle);
 	public List<Terrain> findBySurface(BigDecimal surface);

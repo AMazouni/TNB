@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Quartier {
 	@ManyToOne
 	private Secteur secteur;
 	@JsonProperty(access=Access.WRITE_ONLY)
-	@OneToMany(mappedBy = "quartier")
+	@OneToMany(mappedBy = "quartier",fetch = FetchType.LAZY)
 	private List<Terrain> terrains = new ArrayList<Terrain>();
 
 	public Long getId() {

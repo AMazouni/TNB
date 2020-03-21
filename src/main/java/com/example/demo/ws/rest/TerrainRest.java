@@ -38,9 +38,9 @@ public class TerrainRest {
 	public void save(@RequestBody Terrain terrain) {
 		terrainService.save(terrain);
 	}
-    @GetMapping("/findByRedevableLibelle/{libelle}")
-	public List<Terrain> findbyRedevableLibelle(@PathVariable("libelle") String libelle) {
-		return terrainService.findbyRedevableLibelle(libelle);
+    @GetMapping("/findByRedevableIdentifiant/{identifiant}")
+	public List<Terrain> findbyRedevableLibelle(@PathVariable("identifiant") String identifiant) {
+		return terrainService.findByRedevableIdentifiant(identifiant);
 	}
     @GetMapping("/findByQuartierLibelle/{libelle}")
 	public List<Terrain> findByQuartierLibelle(@PathVariable("libelle") String libelle) {

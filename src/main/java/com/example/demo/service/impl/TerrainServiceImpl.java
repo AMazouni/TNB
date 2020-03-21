@@ -83,12 +83,7 @@ public class TerrainServiceImpl implements TerrainService{
 			int numero) {
 		return terrainDao.findByDernierAnnePaiementAndNotificationNotificationTypeNumero(dernierAnnePaiement, numero);
 	}
-
-	@Override
-	public List<Terrain> findbyRedevableLibelle(String identifiant) {
-		return terrainDao.findByRedevableIdentifiant(identifiant);
-	}
-
+	
 	@Override
 	public List<Terrain> findByQuartierLibelle(String libelle) {
 		return terrainDao.findByQuartierLibelle(libelle);
@@ -119,6 +114,7 @@ public class TerrainServiceImpl implements TerrainService{
 	public List<Terrain> findByRedevableIdentifiant(String identifiant) {
 		return terrainDao.findByRedevableIdentifiant(identifiant);
 	}
+
 
 
 }
