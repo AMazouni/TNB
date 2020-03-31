@@ -20,17 +20,21 @@ public class Terrain {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private BigDecimal surface;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	private Quartier quartier;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	private Redevable redevable;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	private Categorie categorie;
 	private int dernierAnnePaiement;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@OneToOne
 	private Notification notification;
-	@JsonProperty(access=Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "terrain")
+	@JsonProperty(access=Access.WRITE_ONLY)
 	List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
 
 	public Notification getNotification() {
@@ -93,6 +97,13 @@ public class Terrain {
 
 	public Terrain() {
 		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Terrain [id=" + id + ", surface=" + surface + ", quartier=" + quartier + ", redevable=" + redevable
+				+ ", categorie=" + categorie + ", dernierAnnePaiement=" + dernierAnnePaiement + ", notification="
+				+ notification + ", taxesTNB=" + taxesTNB + "]";
 	}
 	
 	

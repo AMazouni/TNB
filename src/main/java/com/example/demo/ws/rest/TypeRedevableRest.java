@@ -22,6 +22,10 @@ public class TypeRedevableRest {
 	@Autowired
 	TypeRedevableService typeRedevableService;
 	
+	@GetMapping("/findByLibelle/{libelle}")
+	public TypeRedevable findByLibelle(@PathVariable String libelle) {
+		return typeRedevableService.findByLibelle(libelle);
+	}
 	@GetMapping("/findbyid/{id}")
 	public TypeRedevable findById(@PathVariable("id") Long Id) {
 		return typeRedevableService.findById(Id);
@@ -43,5 +47,6 @@ public class TypeRedevableRest {
 	public int update(@RequestBody TypeRedevable typeredevable) {
 	 return typeRedevableService.update(typeredevable);	
 	}
+	
 	
 }

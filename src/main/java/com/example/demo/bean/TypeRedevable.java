@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 
 
 @Entity
@@ -17,6 +20,7 @@ public class TypeRedevable {
 	private Long id;
 	private String libelle;
 	@OneToMany (mappedBy = "typeRedevable" )
+	@JsonProperty(access=Access.WRITE_ONLY)
 	private List<Redevable>  redevables;
 	public Long getId() {
 		return id;

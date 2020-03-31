@@ -7,5 +7,5 @@ import com.example.demo.bean.TypeRedevable;
 
 @Repository
 public interface TypeRedevableDao extends JpaRepository<TypeRedevable, Long> {
-
+TypeRedevable findByLibelle(String libelle);
 }

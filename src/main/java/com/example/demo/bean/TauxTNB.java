@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 
 
 @Entity
@@ -32,6 +35,7 @@ public class TauxTNB {
 	@Temporal(TemporalType.DATE)
 	private Date dateFinApp;
 	@OneToMany(mappedBy = "tauxTNB")
+	@JsonProperty(access=Access.WRITE_ONLY)
 	private List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
 	
 	public Long getId() {

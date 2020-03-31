@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,12 +9,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.bean.Achat;
+import com.example.demo.bean.Categorie;
+import com.example.demo.bean.Quartier;
 import com.example.demo.bean.Redevable;
 import com.example.demo.bean.TaxeTNB;
 import com.example.demo.bean.Terrain;
 import com.example.demo.bean.TypeRedevable;
 import com.example.demo.dao.RedevableDao;
+import com.example.demo.service.facade.AchatService;
+import com.example.demo.service.facade.CategorieService;
 import com.example.demo.service.facade.NotificationService;
+import com.example.demo.service.facade.QuartierService;
 import com.example.demo.service.facade.RedevableService;
 import com.example.demo.service.facade.TaxeTNBService;
 import com.example.demo.service.facade.TerrainService;
@@ -33,6 +40,12 @@ public class RedevableServiceImpl implements RedevableService {
 	NotificationService notificationService;
 	@Autowired
 	TaxeTNBService taxeTnbService;
+	@Autowired
+	AchatService achatServiceImpl;
+	@Autowired
+	CategorieService categorieService;
+	@Autowired
+	QuartierService quartierService;
 
 	public Redevable findById(Long id) {
 		if (!redevableDao.findById(id).isPresent())
@@ -43,23 +56,30 @@ public class RedevableServiceImpl implements RedevableService {
 
 	@Override
 	public int save(Redevable redevable) {
-		TypeRedevable typeRedevable1 = typeRedevableService.findById(redevable.getTypeRedevable().getId());
-		List<Terrain> terrains = new ArrayList<Terrain>();
-		terrains = redevable.getTerrains();
-		Boolean search = false;
-		for (Terrain terrain : terrains) {
-			if (terrainService.findByid(terrain.getId()) != null)
-				search = true;
-		}
+		TypeRedevable typeRedevable1 = typeRedevableService.findByLibelle(redevable.getTypeRedevable().getLibelle());
+		List<Terrain> ter = new ArrayList<Terrain>();
 		if (this.findByIdentifiant(redevable.getIdentifiant()) != null) {
 			return -1;
 		} else if (typeRedevable1 == null) {
 			return -2;
-		} else if (search == false) {
-			return -3;
-		}
+		}else {
+		List<Terrain> terrains = redevable.getTerrains();
+	//	System.out.println(terrains);
+		redevable.setTerrains(ter);
 		redevable.setTypeRedevable(typeRedevable1);
 		redevableDao.save(redevable);
+		for (Terrain terrain : terrains) {
+			System.out.println(terrain);
+			Categorie categorie = categorieService.findById(terrain.getCategorie().getId());
+			Quartier quartier = quartierService.findById(terrain.getQuartier().getId());
+			terrain.setRedevable(redevable);
+			terrain.setCategorie(categorie);
+			terrain.setQuartier(quartier);
+			terrain.setDernierAnnePaiement(DateUtils.getYear());
+		//	System.out.println(terrain);
+			terrainService.save(terrain);
+		}
+		}
 		return 1;
 	}
 
@@ -209,20 +229,163 @@ public class RedevableServiceImpl implements RedevableService {
 		}
 		return resultat;
 	}
+
 	@Override
 	public List<Redevable> findRedevableNonPayerAyantnombreRetard(Integer nombreMoisDeRetard) {
 		List<Redevable> redevables = new ArrayList<Redevable>();
 		redevables = findRedevableNonPayer();
 		List<TaxeTNB> taxeTNBs = new ArrayList<TaxeTNB>();
-		List<Redevable> resultat = new ArrayList<Redevable>();		
+		List<Redevable> resultat = new ArrayList<Redevable>();
 		for (Redevable redevable : redevables) {
 			taxeTNBs = null;
 			taxeTNBs = redevable.getTaxesTNB();
 			for (TaxeTNB taxeTNB : taxeTNBs) {
-				if(taxeTNB.getNombreMoisRetard()==nombreMoisDeRetard)
+				if (taxeTNB.getNombreMoisRetard() == nombreMoisDeRetard)
 					resultat.add(redevable);
 			}
-	}
+		}
 		return resultat;
-}
 	}
+
+	public List<Redevable> findRedevablequiaAcheterUnTerrainDeceRedevable(Long id) {
+		List<Achat> achats = achatServiceImpl.findAll();
+		List<Redevable> result = new ArrayList<Redevable>();
+		for (Achat achat : achats) {
+			if (achat.getOldredevable().getId() == id)
+				result.add(achat.getNewRedevable());
+		}
+		return result;
+	}
+
+	public List<Redevable> findRedevablequiVendreUnTerrainDeceRedevable(Long id) {
+		List<Achat> achats = achatServiceImpl.findAll();
+		List<Redevable> result = new ArrayList<Redevable>();
+		for (Achat achat : achats) {
+			if (achat.getNewRedevable().getId() == id)
+				result.add(achat.getOldredevable());
+		}
+		return result;
+	}
+
+	@Override
+	public Redevable findRedevablequiaAcheterUnTerrainDeceRedevableDansCetteDate(Long id, Date date) {
+		List<Achat> achats = achatServiceImpl.findAll();
+		Redevable result =new Redevable();
+		for (Achat achat : achats) {
+			if (achat.getOldredevable().getId() == id && DateUtils.compareDate(achat.getDateachat(), date))
+				result = achat.getNewRedevable();
+		}
+		return result;
+	}
+
+	@Override
+	public Redevable findRedevablequiVendreUnTerrainDeceRedevableDansCetteDate(Long id, Date date) {
+		List<Achat> achats = achatServiceImpl.findAll();
+		Redevable result =new Redevable();
+		for (Achat achat : achats) {
+			if (achat.getNewRedevable().getId() == id && DateUtils.compareDate(achat.getDateachat(), date))
+				result = achat.getOldredevable();
+		}
+		return result;
+	}
+
+	@Override
+	public List<Redevable> findRedevableVendreUnTerrainDansCetteDate(Date date) {
+		List<Achat> achats = achatServiceImpl.findAll();
+		List<Redevable> result =new ArrayList<Redevable>();
+		for (Achat achat : achats) {
+			if ( DateUtils.compareDate(achat.getDateachat(), date))
+				result.add(achat.getOldredevable());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Redevable> findRedevableAcheterUnTerrainDansCetteDate(Date date) {
+		List<Achat> achats = achatServiceImpl.findAll();
+		List<Redevable> result =new ArrayList<Redevable>();
+		for (Achat achat : achats) {
+			if ( DateUtils.compareDate(achat.getDateachat(), date))
+				result.add(achat.getNewRedevable());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Redevable> findRedevableAcheterCeUnTerrain(Long id) {
+		List<Achat> achats = achatServiceImpl.findAll();
+		List<Redevable> result =new ArrayList<Redevable>();
+		for (Achat achat : achats) {
+			if (achat.getTerrain().getId() == id)
+				result.add(achat.getNewRedevable());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Redevable> findRedevablevendreCeTerrain(Long id) {
+		List<Achat> achats = achatServiceImpl.findAll();
+		List<Redevable> result =new ArrayList<Redevable>();
+		for (Achat achat : achats) {
+			if (achat.getTerrain().getId() == id)
+				result.add(achat.getOldredevable());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Redevable> findRedevableAcheterentreCesDeuxDates(Date date1, Date date2) {
+		List<Achat> achats = achatServiceImpl.findAll();
+		List<Redevable> result =new ArrayList<Redevable>();
+		for (Achat achat : achats) {
+			if (DateUtils.getDatebetween(achat.getDateachat(), date1, date2))
+				result.add(achat.getNewRedevable());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Redevable> findRedevablevendreCesDeuxDate(Date date1, Date date2) {
+		List<Achat> achats = achatServiceImpl.findAll();
+		List<Redevable> result =new ArrayList<Redevable>();
+		for (Achat achat : achats) {
+			if (DateUtils.getDatebetween(achat.getDateachat(), date1, date2))
+				result.add(achat.getOldredevable());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Redevable> findRedevableQuiOntUnTerrainDeCeCategorie(Long id) {
+		List<Terrain> terrains = terrainService.findAll();
+		List<Redevable> result =new ArrayList<Redevable>();
+		for (Terrain terrain : terrains) {
+			if (terrain.getCategorie().getId()  == id)
+				result.add(terrain.getRedevable());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Redevable> findRedevablevendreQuiOntUnTerrainDansCeQuartier(Long id) {
+		List<Terrain> terrains = terrainService.findAll();
+		List<Redevable> result =new ArrayList<Redevable>();
+		for (Terrain terrain : terrains) {
+			if (terrain.getQuartier().getId()  == id)
+				result.add(terrain.getRedevable());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Redevable> findRedevableOntUnTerrainDeCeSurface(BigDecimal surface) {
+		List<Terrain> terrains = terrainService.findAll();
+		List<Redevable> result =new ArrayList<Redevable>();
+		for (Terrain terrain : terrains) {
+			if (terrain.getSurface() == surface)
+				result.add(terrain.getRedevable());
+		}
+		return result;
+	}
+	
+}

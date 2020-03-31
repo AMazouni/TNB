@@ -1,5 +1,6 @@
 package com.example.demo.service.facade;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -44,4 +45,30 @@ public interface RedevableService {
 	public List<Redevable> findRedevablePayerdans(Date date);
 
 	public List<Redevable> findRedevableNonPayerAyantnombreRetard(Integer nombreMoisDeRetard);
+
+	public List<Redevable> findRedevablequiaAcheterUnTerrainDeceRedevable(Long id);
+
+	public List<Redevable> findRedevablequiVendreUnTerrainDeceRedevable(Long id);
+
+	public Redevable findRedevablequiaAcheterUnTerrainDeceRedevableDansCetteDate(Long id, Date date);
+
+	public Redevable findRedevablequiVendreUnTerrainDeceRedevableDansCetteDate(Long id, Date date);
+
+	public List<Redevable> findRedevableVendreUnTerrainDansCetteDate(Date date);
+
+	public List<Redevable> findRedevableAcheterUnTerrainDansCetteDate(Date date);
+
+	public List<Redevable> findRedevableAcheterCeUnTerrain(Long id);
+
+	public List<Redevable> findRedevablevendreCeTerrain(Long id);
+
+	public List<Redevable> findRedevableAcheterentreCesDeuxDates(Date date1, Date date2);
+
+	public List<Redevable> findRedevablevendreCesDeuxDate(Date date1, Date date2);
+
+	public List<Redevable> findRedevableQuiOntUnTerrainDeCeCategorie(Long id);
+
+	public List<Redevable> findRedevablevendreQuiOntUnTerrainDansCeQuartier(Long id);
+
+	List<Redevable> findRedevableOntUnTerrainDeCeSurface(BigDecimal surface);
 }

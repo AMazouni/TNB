@@ -53,4 +53,9 @@ public class TypeRedevableServiceImpl implements TypeRedevableService {
 		return 1;
 	}
 
+	@Override
+	public TypeRedevable findByLibelle(String libelle) {
+		return typeRedevableDao.findByLibelle(libelle);
+	}
+
 }

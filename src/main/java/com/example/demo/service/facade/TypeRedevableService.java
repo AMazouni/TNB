@@ -15,4 +15,7 @@ public interface TypeRedevableService {
 	public int deleteById(Long id);
 
 	public int update(TypeRedevable typeredevable);
+
+	TypeRedevable findByLibelle(String libelle);
+
 }

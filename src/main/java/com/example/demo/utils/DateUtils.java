@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class DateUtils {
- public static Date getDateByYear (Integer year) {
+ public static Date getDateByYear(Integer year) {
 	 GregorianCalendar calendar = new GregorianCalendar(year,1,1);
 	return calendar.getTime();
  }
@@ -26,7 +26,6 @@ public class DateUtils {
 	 Calendar c=new GregorianCalendar();
 	 c.setTime(d);
 	 return c.get(Calendar.YEAR);
-
  }
  public static Boolean compareDate(Date date1,Date date2) {
 		long milliSeconde1 = date1.getTime();
@@ -36,5 +35,14 @@ public class DateUtils {
 		else {
 			return false;
 		}
+ }
+ public static boolean getDatebetween(Date date1,Date date2,Date date3) {
+		long milliSeconde1 = date1.getTime();
+		long milliSeconde2 = date2.getTime();
+		long milliSeconde3 = date3.getTime();
+		if(milliSeconde1<milliSeconde2 && milliSeconde3<milliSeconde1)
+			return true;
+		else 
+			return false;
  }
 }

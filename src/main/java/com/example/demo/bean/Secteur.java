@@ -21,8 +21,8 @@ public class Secteur {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String libelle;
-	@JsonProperty(access=Access.WRITE_ONLY)
 	@OneToMany (mappedBy = "secteur",fetch = FetchType.LAZY)
+	@JsonProperty(access=Access.WRITE_ONLY)
 	private List<Quartier> quartiers = new ArrayList<Quartier>();
 
 	public Long getId() {

@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 public class Categorie {
 	@Id
@@ -16,8 +19,10 @@ public class Categorie {
 	private Long id;
 	private String libelle;
 	@OneToMany(mappedBy = "categorie")
+	@JsonProperty(access=Access.WRITE_ONLY)
 	List<Terrain> terrains = new ArrayList<Terrain>();
 	@OneToMany(mappedBy = "categorie")
+	@JsonProperty(access=Access.WRITE_ONLY)
 	List<TauxTNB> tauxTNB = new ArrayList<TauxTNB>();
 	public Long getId() {
 		return id;

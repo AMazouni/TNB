@@ -29,6 +29,7 @@ public class Redevable {
 	@JsonProperty(access= Access.WRITE_ONLY)
 	List<Terrain> terrains = new ArrayList<Terrain>();
 	@OneToMany(mappedBy = "redevable")
+	@JsonProperty(access=Access.WRITE_ONLY)
 	List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
 	
 	

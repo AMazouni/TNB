@@ -1,10 +1,12 @@
 package com.example.demo.ws.rest;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,12 +22,74 @@ import com.example.demo.bean.TypeRedevable;
 import com.example.demo.service.facade.RedevableService;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/TNB-Api/Redevable")
 public class RedevableRest {
 
 	@Autowired
 	RedevableService redevableService;
 	
+	@GetMapping("findRedevablequiaAcheterUnTerrainDeceRedevable/{id}")
+	public List<Redevable> findRedevablequiaAcheterUnTerrainDeceRedevable(@PathVariable Long id) {
+		return redevableService.findRedevablequiaAcheterUnTerrainDeceRedevable(id);
+	}
+	
+	@GetMapping("findRedevablequiVendreUnTerrainDeceRedevable/{id}")
+	public List<Redevable> findRedevablequiVendreUnTerrainDeceRedevable(@PathVariable Long id) {
+		return redevableService.findRedevablequiVendreUnTerrainDeceRedevable(id);
+	}
+	
+	@GetMapping("findRedevablequiaAcheterUnTerrainDeceRedevableDansCetteDate/id/{id}/date/{date}")
+	public Redevable findRedevablequiaAcheterUnTerrainDeceRedevableDansCetteDate(@PathVariable Long id,@PathVariable @DateTimeFormat(pattern =  "yyyy-MM-dd") Date date) {
+		return redevableService.findRedevablequiaAcheterUnTerrainDeceRedevableDansCetteDate(id, date);
+	}
+	
+	@GetMapping("findRedevablequiVendreUnTerrainDeceRedevableDansCetteDate/id/{id}/date/{date}")
+	public Redevable findRedevablequiVendreUnTerrainDeceRedevableDansCetteDate(@PathVariable Long id,@PathVariable @DateTimeFormat(pattern =  "yyyy-MM-dd") Date date) {
+		return redevableService.findRedevablequiVendreUnTerrainDeceRedevableDansCetteDate(id, date);
+	}
+	
+	@GetMapping("findRedevableVendreUnTerrainDansCetteDate/date/{date}")
+	public List<Redevable> findRedevableVendreUnTerrainDansCetteDate(@PathVariable @DateTimeFormat(pattern =  "yyyy-MM-dd") Date date) {
+		return redevableService.findRedevableVendreUnTerrainDansCetteDate(date);
+	}
+	
+	@GetMapping("findRedevableAcheterUnTerrainDansCetteDate/date/{date}")
+	public List<Redevable> findRedevableAcheterUnTerrainDansCetteDate(@PathVariable @DateTimeFormat(pattern =  "yyyy-MM-dd") Date date) {
+		return redevableService.findRedevableAcheterUnTerrainDansCetteDate(date);
+	}
+	
+	@GetMapping("findRedevableAcheterCeUnTerrain/id/{id}")
+	public List<Redevable> findRedevableAcheterCeUnTerrain(@PathVariable Long id) {
+		return redevableService.findRedevableAcheterCeUnTerrain(id);
+	}
+	@GetMapping("findRedevablevendreCeTerrain/id/{id}")
+	public List<Redevable> findRedevablevendreCeTerrain(@PathVariable Long id) {
+		return redevableService.findRedevablevendreCeTerrain(id);
+	}
+	@GetMapping("findRedevableAcheterentreCesDeuxDates/date1/{date1}/date2/{date2}")
+	public List<Redevable> findRedevableAcheterentreCesDeuxDates(@PathVariable @DateTimeFormat(pattern =  "yyyy-MM-dd") Date date1,@PathVariable @DateTimeFormat(pattern =  "yyyy-MM-dd") Date date2) {
+		return redevableService.findRedevableAcheterentreCesDeuxDates(date1, date2);
+	}
+	
+	@GetMapping("findRedevablevendreCesDeuxDate/date1/{date1}/date2/{date2}")
+	public List<Redevable> findRedevablevendreCesDeuxDate(@PathVariable @DateTimeFormat(pattern =  "yyyy-MM-dd") Date date1,@PathVariable @DateTimeFormat(pattern =  "yyyy-MM-dd") Date date2) {
+		return redevableService.findRedevablevendreCesDeuxDate(date1, date2);
+	}
+	@GetMapping("findRedevableQuiOntUnTerrainDeCeCategorie/id/{id}")
+	public List<Redevable> findRedevableQuiOntUnTerrainDeCeCategorie(@PathVariable Long id) {
+		return redevableService.findRedevableQuiOntUnTerrainDeCeCategorie(id);
+	}
+	
+	@GetMapping("findRedevablevendreQuiOntUnTerrainDansCeQuartier/id/{id}")
+	public List<Redevable> findRedevablevendreQuiOntUnTerrainDansCeQuartier(@PathVariable Long id) {
+		return redevableService.findRedevablevendreQuiOntUnTerrainDansCeQuartier(id);
+	}
+	
+	@GetMapping("findRedevableOntUnTerrainDeCeSurface/surface/{surface}")
+	public List<Redevable> findRedevableOntUnTerrainDeCeSurface(@PathVariable BigDecimal surface) {
+		return redevableService.findRedevableOntUnTerrainDeCeSurface(surface);
+	}
 	@GetMapping("findRedevableNonPayerAyantnombreRetard/{nombreMoisDeRetard}")
 	public List<Redevable> findRedevableNonPayerAyantnombreRetard(@PathVariable Integer nombreMoisDeRetard) {
 		return redevableService.findRedevableNonPayerAyantnombreRetard(nombreMoisDeRetard);

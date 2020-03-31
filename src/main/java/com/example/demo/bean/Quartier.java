@@ -27,8 +27,9 @@ public class Quartier {
 	private String libelle;
 	@ManyToOne
 	private Secteur secteur;
-	@JsonProperty(access=Access.WRITE_ONLY)
+
 	@OneToMany(mappedBy = "quartier",fetch = FetchType.LAZY)
+	@JsonProperty(access=Access.WRITE_ONLY)
 	private List<Terrain> terrains = new ArrayList<Terrain>();
 
 	public Long getId() {

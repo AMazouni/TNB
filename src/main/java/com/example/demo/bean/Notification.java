@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 public class Notification {
 	@Id
@@ -20,6 +23,7 @@ public class Notification {
 	private Double montantRetard;
 	private int nombreMoisRetard;
 	@OneToMany(mappedBy = "notification")
+	@JsonProperty(access=Access.WRITE_ONLY)
 	List<NotificationDetail> notificationDetails = new ArrayList<NotificationDetail>();
 
 
