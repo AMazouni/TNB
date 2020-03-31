@@ -48,40 +48,59 @@ public class Terrain {
 	public Categorie getCategorie() {
 		return categorie;
 	}
+
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public BigDecimal getSurface() {
 		return surface;
 	}
+
 	public void setSurface(BigDecimal surface) {
 		this.surface = surface;
 	}
+
 	public Quartier getQuartier() {
 		return quartier;
 	}
+
 	public void setQuartier(Quartier quartier) {
 		this.quartier = quartier;
 	}
+
 	public Redevable getRedevable() {
 		return redevable;
 	}
+
 	public void setRedevable(Redevable redevable) {
 		this.redevable = redevable;
 	}
+
 	public int getDernierAnnePaiement() {
 		return dernierAnnePaiement;
 	}
+
 	public void setDernierAnnePaiement(int dernierAnnePaiement) {
 		this.dernierAnnePaiement = dernierAnnePaiement;
 	}
-	
+
+	public List<TaxeTNB> getTaxesTNB() {
+		return taxesTNB;
+	}
+
+	public void setTaxesTNB(List<TaxeTNB> taxesTNB) {
+		this.taxesTNB = taxesTNB;
+	}
+
 	public Terrain(long id, BigDecimal surface, Quartier quartier, Redevable redevable, Categorie categorie,
 			int dernierAnnePaiement, Notification notification, List<TaxeTNB> taxesTNB) {
 		super();

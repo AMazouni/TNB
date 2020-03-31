@@ -3,9 +3,12 @@ package com.example.demo.service.impl;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.bean.TaxeTNB;
 import com.example.demo.bean.Terrain;
 import com.example.demo.dao.TerrainDao;
 import com.example.demo.service.facade.CategorieService;
@@ -13,8 +16,9 @@ import com.example.demo.service.facade.QuartierService;
 import com.example.demo.service.facade.RedevableService;
 import com.example.demo.service.facade.TaxeTNBService;
 import com.example.demo.service.facade.TerrainService;
+
 @Service
-public class TerrainServiceImpl implements TerrainService{
+public class TerrainServiceImpl implements TerrainService {
 	@Autowired
 	TerrainDao terrainDao;
 	@Autowired
@@ -25,6 +29,7 @@ public class TerrainServiceImpl implements TerrainService{
 	CategorieService categorieService;
 	@Autowired
 	TaxeTNBService taxeTNBservice;
+
 	@Override
 	public List<Terrain> findAll() {
 		return terrainDao.findAll();
@@ -34,7 +39,8 @@ public class TerrainServiceImpl implements TerrainService{
 	public Terrain findByid(Long id) {
 		if (terrainDao.findById(id).isPresent()) {
 			return terrainDao.findById(id).get();
-		} else return null;
+		} else
+			return null;
 	}
 
 	@Override
@@ -43,18 +49,27 @@ public class TerrainServiceImpl implements TerrainService{
 		terrainDao.deleteById(id);
 		if (findByid(id) == null) {
 			return 1;
-		} else return -1;
+		} else
+			return -1;
 	}
 
 	@Override
+	@Transactional
 	public int save(Terrain terrain) {
-		if (quartierService.findById(terrain.getQuartier().getId()) != null &&
-			redevableService.findById(terrain.getRedevable().getId()) != null &&
-			categorieService.findById(terrain.getCategorie().getId()) != null)
-		{ terrainDao.save(terrain);
+		if (findByid(terrain.getId()) != null)
+			return -1;
+		if (quartierService.findById(terrain.getQuartier().getId()) == null
+				|| redevableService.findById(terrain.getRedevable().getId()) == null
+				|| categorieService.findById(terrain.getCategorie().getId()) == null)
+			return -2;
+		if (terrain.getSurface() == null)
+			return -3;
+		terrainDao.save(terrain);
+		for (TaxeTNB taxeTNB : terrain.getTaxesTNB()) {
+			if (taxeTNB.getTerrain().getId() != terrain.getId()) taxeTNB.setTerrain(terrain);
+			if (taxeTNBservice.findById(taxeTNB.getId()) == null) taxeTNBservice.save(taxeTNB);
+		}
 		return 1;
-		 }
-		else return -1;
 	}
 
 	@Override
@@ -68,14 +83,23 @@ public class TerrainServiceImpl implements TerrainService{
 	}
 
 	@Override
+	@Transactional
 	public int update(Long id, Terrain terrain) {
-		if (findByid(id) == null) {
+		if (findByid(terrain.getId()) == null)
 			return -1;
-		}
-		else {
+		if (quartierService.findById(terrain.getQuartier().getId()) == null
+				|| redevableService.findById(terrain.getRedevable().getId()) == null
+				|| categorieService.findById(terrain.getCategorie().getId()) == null)
+			return -2;
+		if (terrain.getSurface() == null)
+			return -3;
 		terrainDao.save(terrain);
-		return 1;
+		for (TaxeTNB taxeTNB : terrain.getTaxesTNB()) {
+			if (taxeTNB.getTerrain().getId() != terrain.getId()) taxeTNB.setTerrain(terrain);
+			if (taxeTNBservice.findById(taxeTNB.getId()) == null) taxeTNBservice.save(taxeTNB);
+			else taxeTNBservice.update(taxeTNB);
 		}
+		return 1;
 	}
 
 	@Override
@@ -83,7 +107,7 @@ public class TerrainServiceImpl implements TerrainService{
 			int numero) {
 		return terrainDao.findByDernierAnnePaiementAndNotificationNotificationTypeNumero(dernierAnnePaiement, numero);
 	}
-	
+
 	@Override
 	public List<Terrain> findByQuartierLibelle(String libelle) {
 		return terrainDao.findByQuartierLibelle(libelle);
@@ -114,7 +138,5 @@ public class TerrainServiceImpl implements TerrainService{
 	public List<Terrain> findByRedevableIdentifiant(String identifiant) {
 		return terrainDao.findByRedevableIdentifiant(identifiant);
 	}
-
-
 
 }
