@@ -19,4 +19,5 @@ public interface TerrainDao extends JpaRepository<Terrain, Long> {
 	public List<Terrain> findByCategorieLibelle(String libelle);
 	public List<Terrain> findByDernierAnnePaiementAndQuartierLibelle(int dernierAnnePaiement,String Libelle);
 	public List<Terrain> findByDernierAnnePaiementAndQuartierSecteurLibelle(int dernierAnnePaiement,String Libelle);
+
 }

@@ -36,6 +36,8 @@ public class Terrain {
 	@OneToMany(mappedBy = "terrain")
 	@JsonProperty(access=Access.WRITE_ONLY)
 	List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
+	@ManyToOne
+	private TypeTerrain typeterrain;
 
 	public Notification getNotification() {
 		return notification;
