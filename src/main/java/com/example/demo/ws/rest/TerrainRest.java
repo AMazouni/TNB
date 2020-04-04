@@ -3,6 +3,7 @@ package com.example.demo.ws.rest;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.example.demo.bean.Redevable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -80,6 +81,11 @@ public class TerrainRest {
 	public List<Terrain> findByDernierAnnePaiementAndQuartierSecteurLibelle(@PathVariable("dernierAnnePaiement") int dernierAnnePaiement,@PathVariable("libelle") String Libelle) {
 		return terrainService.findByDernierAnnePaiementAndQuartierSecteurLibelle(dernierAnnePaiement, Libelle);
 	}
+	@GetMapping(path="/findRedevableTerrainNP/{redevableId}",consumes = MediaType.APPLICATION_JSON_VALUE)
+	public List<Terrain> findTerrainsRedevableNonPaye(@PathVariable Long redevableId) {
+		return terrainService.findTerrainsRedevableNonPaye(redevableId);
+	}
+
     
 	
 }

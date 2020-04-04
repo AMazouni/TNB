@@ -2,6 +2,7 @@ package com.example.demo.ws.rest;
 
 import com.example.demo.bean.NotificationDetail;
 import com.example.demo.bean.NotificationType;
+import com.example.demo.bean.Quartier;
 import com.example.demo.service.facade.NotificationDetailService;
 import com.example.demo.service.facade.NotificationTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ public class NotificationTypeRest {
     @GetMapping("/{numero}")
     public NotificationType findByNumero(@PathVariable  int numero) {
         return notificationTypeService.findByNumero(numero);
+    }
+    @GetMapping("/findAll")
+    public List<NotificationType> findAll() {
+        return notificationTypeService.findAll();
     }
 
 

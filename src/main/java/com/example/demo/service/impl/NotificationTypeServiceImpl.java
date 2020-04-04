@@ -6,6 +6,8 @@ import com.example.demo.service.facade.NotificationTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NotificationTypeServiceImpl implements NotificationTypeService {
 
@@ -26,6 +28,12 @@ public class NotificationTypeServiceImpl implements NotificationTypeService {
             notificationTypeDao.save(new NotificationType("notif3", 3));
 
         }
+    }
+
+    @Override
+    public List<NotificationType> findAll() {
+        initNotificationType();
+        return notificationTypeDao.findAll();
     }
 
 }

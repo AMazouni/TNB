@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.example.demo.bean.Redevable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -144,6 +145,17 @@ public class TerrainServiceImpl implements TerrainService {
 	@Override
 	public List<Terrain> findAllTerrainsNonPaye() {
 		List<Terrain> terrains = findAll();
+		List<Terrain> terrainsNonPaye = new ArrayList<Terrain>();
+		for (Terrain terrain : terrains) {
+			if (terrain.getDernierAnnePaiement() != DateUtils.getYear()) terrainsNonPaye.add(terrain);
+		}
+		return terrainsNonPaye;
+	}
+
+	@Override
+	public List<Terrain> findTerrainsRedevableNonPaye(Long redevableId) {
+		Redevable redevable=redevableService.findById(redevableId);
+		List<Terrain> terrains = redevable.getTerrains();
 		List<Terrain> terrainsNonPaye = new ArrayList<Terrain>();
 		for (Terrain terrain : terrains) {
 			if (terrain.getDernierAnnePaiement() != DateUtils.getYear()) terrainsNonPaye.add(terrain);

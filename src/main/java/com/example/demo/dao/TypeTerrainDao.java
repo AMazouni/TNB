@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface TypeTerrainDao extends JpaRepository<TypeTerrain,Long> {
-    public List<TypeTerrain> findbyTypeTerrainlibelle(String libelle);
-    public List<TypeTerrain> findbyTypeTerraincodeReference(String codeReference);
-    public List<TypeTerrain> findByTypeTerrainid(Long id);
+    public List<TypeTerrain> findByLibelle(String libelle);
+    public List<TypeTerrain> findByCodeReference(String codeReference);
+    public TypeTerrain findByid(Long id);
 
 }

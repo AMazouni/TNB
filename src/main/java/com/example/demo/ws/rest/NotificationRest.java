@@ -4,6 +4,7 @@ import com.example.demo.bean.Notification;
 import com.example.demo.bean.Terrain;
 import com.example.demo.service.facade.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class NotificationRest {
     public Notification findByTerrainId(@PathVariable  Long id) {
         return notificationService.findByTerrainId(id);
     }
-    @PostMapping("/")
+    @PostMapping(path="/give" , consumes = MediaType.APPLICATION_JSON_VALUE)
     public int giveNotification(@RequestBody Terrain terrain) {
         return notificationService.giveNotification(terrain);
     }

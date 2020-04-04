@@ -15,18 +15,18 @@ public class TypeTerrainServiceImpl implements TypeTerrainService {
 
     @Override
     public List<TypeTerrain> findbyTypeTerrainlibelle(String libelle) {
-        return typeterraindao.findbyTypeTerrainlibelle(libelle);
+        return typeterraindao.findByLibelle(libelle);
     }
 
     @Override
     public List<TypeTerrain> findbyTypeTerraincodeReference(String codeReference) {
-        return typeterraindao.findbyTypeTerraincodeReference(codeReference);
+        return typeterraindao.findByCodeReference(codeReference);
     }
 
     @Override
-    public List<TypeTerrain> findByTypeTerrainid(Long id) {
+    public TypeTerrain findByTypeTerrainid(Long id) {
 
 
-        return typeterraindao.findByTypeTerrainid(id);
+        return typeterraindao.findByid(id);
     }
 }
