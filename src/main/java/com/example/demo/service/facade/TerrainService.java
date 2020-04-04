@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.example.demo.bean.Terrain;
+import org.springframework.stereotype.Service;
 
-
+@Service
 
 public interface TerrainService {
+
 	public List<Terrain> findAll();
 	public Terrain findByid(Long id);
 	public int deleteById(Long id);
@@ -22,4 +24,5 @@ public interface TerrainService {
 	public List<Terrain> findByCategorieLibelle(String libelle);
 	public List<Terrain> findByDernierAnnePaiementAndQuartierLibelle(int dernierAnnePaiement,String Libelle);
 	public List<Terrain> findByDernierAnnePaiementAndQuartierSecteurLibelle(int dernierAnnePaiement,String Libelle);
+
 }

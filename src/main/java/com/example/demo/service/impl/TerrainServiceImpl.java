@@ -131,7 +131,7 @@ public class TerrainServiceImpl implements TerrainService {
 	@Override
 	public List<Terrain> findByDernierAnnePaiementAndQuartierSecteurLibelle(int dernierAnnePaiement, String Libelle) {
 		// TODO Auto-generated method stub
-		return null;
+		return terrainDao.findByDernierAnnePaiementAndQuartierSecteurLibelle(dernierAnnePaiement,Libelle);
 	}
 
 	@Override
