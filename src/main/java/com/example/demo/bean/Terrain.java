@@ -101,10 +101,9 @@ public class Terrain {
 		this.taxesTNB = taxesTNB;
 	}
 
-	public Terrain(long id, BigDecimal surface, Quartier quartier, Redevable redevable, Categorie categorie,
+	public Terrain(BigDecimal surface, Quartier quartier, Redevable redevable, Categorie categorie,
 			int dernierAnnePaiement, Notification notification, List<TaxeTNB> taxesTNB) {
 		super();
-		this.id = id;
 		this.surface = surface;
 		this.quartier = quartier;
 		this.redevable = redevable;

@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/TNB-api/NotificationDetail")
 public class NotificationDetailRest {
     @Autowired

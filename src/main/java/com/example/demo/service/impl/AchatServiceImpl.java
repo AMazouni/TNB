@@ -75,7 +75,7 @@ public class AchatServiceImpl implements AchatService {
 				String strDate2 = formatter.format(dateachat);
 				Date date2;
 				date2 = formatter.parse(strDate2);
-				if (DateUtils.compareDate(date1, date2) == true)
+				if (DateUtils.compareDate(date1, date2))
 					results.add(achat);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
@@ -93,13 +93,13 @@ public class AchatServiceImpl implements AchatService {
 		Terrain terrain = terrainService.findByid(achat.getTerrain().getId());
 		if (terrain == null) {
 			return -1;
-		} else if (terrain.getRedevable().getId() != oldRedevable.getId()) {
+		} else if (!terrain.getRedevable().getId().equals(oldRedevable.getId())) {
 			return -2;
 		} else if (newRedevable == null) {
 			return -3;
 		} else if (oldRedevable == null) {
 			return -4;
-		} else if (newRedevable.getId() == oldRedevable.getId()) {
+		} else if (newRedevable.getId().equals(oldRedevable.getId())) {
 			return -5;
 		} else if (terrain.getDernierAnnePaiement() != DateUtils.getYear()) {
 			return -6;

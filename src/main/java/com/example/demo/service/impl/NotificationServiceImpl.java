@@ -51,26 +51,28 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public int giveNotification(Long idTerrain) {
-        Terrain terrain=terrainService.findByid(idTerrain);
-        notificationTypeService.initNotificationType();
-        TaxeTNB tmp=new TaxeTNB();
-        tmp.setAnnee(terrain.getDernierAnnePaiement());
-        tmp.setTerrain(terrain);
-        TaxeTNB taxeTNB=taxeTNBService.payerSim(tmp);
-        if (terrain.getNotification()==null){
-            Notification notification=new Notification(notificationTypeService.findByNumero(1),terrain,terrain.getDernierAnnePaiement(), DateUtils.getYear(),taxeTNB.getMontant(),taxeTNB.getMontantRetard(),taxeTNB.getNombreMoisRetard());
-            notificationDao.save(notification);
-            notificationDetailService.initNotificationDetails(notification);
-                return 1;
-        }else if (terrain.getNotification().getNotificationType().getNumero()==1){
-            return update(terrain, taxeTNB, 2);
-        }else if(terrain.getNotification().getNotificationType().getNumero()==2){
-            return update(terrain, taxeTNB, 3);
+    public int giveNotification(Terrain terrain) {
+        if (terrain==null){
+            return -1;
         }else {
-            return 0;
+            notificationTypeService.initNotificationType();
+            TaxeTNB tmp = new TaxeTNB();
+            tmp.setAnnee(terrain.getDernierAnnePaiement());
+            tmp.setTerrain(terrain);
+            TaxeTNB taxeTNB = taxeTNBService.payerSim(tmp);
+            if (terrain.getNotification() == null) {
+                Notification notification = new Notification(notificationTypeService.findByNumero(1), terrain, terrain.getDernierAnnePaiement(), DateUtils.getYear(), taxeTNB.getMontant(), taxeTNB.getMontantRetard(), taxeTNB.getNombreMoisRetard());
+                notificationDao.save(notification);
+                notificationDetailService.initNotificationDetails(notification);
+                return 1;
+            } else if (terrain.getNotification().getNotificationType().getNumero() == 1) {
+                return update(terrain, taxeTNB, 2);
+            } else if (terrain.getNotification().getNotificationType().getNumero() == 2) {
+                return update(terrain, taxeTNB, 3);
+            } else {
+                return 0;
+            }
         }
-
     }
 
     private int update(Terrain terrain, TaxeTNB taxeTNB, int i) {

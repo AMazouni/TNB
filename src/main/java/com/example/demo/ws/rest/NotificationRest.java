@@ -1,6 +1,7 @@
 package com.example.demo.ws.rest;
 
 import com.example.demo.bean.Notification;
+import com.example.demo.bean.Terrain;
 import com.example.demo.service.facade.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/TNB-api/Notification")
 public class NotificationRest {
     @Autowired
@@ -34,7 +36,7 @@ public class NotificationRest {
         return notificationService.findByTerrainId(id);
     }
     @PostMapping("/")
-    public int giveNotification(@RequestBody Long idTerrain) {
-        return notificationService.giveNotification(idTerrain);
+    public int giveNotification(@RequestBody Terrain terrain) {
+        return notificationService.giveNotification(terrain);
     }
 }

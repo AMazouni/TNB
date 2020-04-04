@@ -93,10 +93,9 @@ public class TaxeTNB {
 		this.annee = annee;
 	}
 
-	public TaxeTNB(Long id, Terrain terrain, Redevable redevable, Double montant, Double montantRetard,
+	public TaxeTNB(Terrain terrain, Redevable redevable, Double montant, Double montantRetard,
 			Double montantTotal, Integer nombreMoisRetard, TauxTNB tauxTNB, Date dateTaxeTNB, Integer annee) {
 		super();
-		this.id = id;
 		this.terrain = terrain;
 		this.redevable = redevable;
 		this.montant = montant;

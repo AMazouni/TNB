@@ -71,9 +71,8 @@ public class Redevable {
 	public void setTaxesTNB(List<TaxeTNB> taxesTNB) {
 		this.taxesTNB = taxesTNB;
 	}
-	public Redevable(Long id, String identifiant, String nom, TypeRedevable typeRedevable) {
+	public Redevable(String identifiant, String nom, TypeRedevable typeRedevable) {
 		super();
-		this.id = id;
 		this.identifiant = identifiant;
 		this.nom = nom;
 		this.typeRedevable = typeRedevable;

@@ -4,19 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.bean.Secteur;
 import com.example.demo.service.facade.SecteurService;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/TNB-Api/Secteur")
 public class SecteurRest {
 	@Autowired
@@ -24,6 +18,10 @@ public class SecteurRest {
 	@GetMapping(path = "/findAll",produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Secteur> findAll() {
 		return secteurService.findAll();
+	}
+	@GetMapping(path = "/findLast",produces = MediaType.APPLICATION_JSON_VALUE)
+	public Secteur findLast() {
+		return secteurService.findTopByOrderByIdDesc();
 	}
 	@GetMapping("/findById/{id}")
 	public Secteur findByid(@PathVariable("id") Long id) {

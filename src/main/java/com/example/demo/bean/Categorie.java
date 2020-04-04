@@ -36,9 +36,8 @@ public class Categorie {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	public Categorie(Long id, String libelle) {
+	public Categorie(String libelle) {
 		super();
-		this.id = id;
 		this.libelle = libelle;
 	}
 	public Categorie() {

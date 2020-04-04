@@ -98,10 +98,9 @@ public class TauxTNB {
 	public void setTaxesTNB(List<TaxeTNB> taxesTNB) {
 		this.taxesTNB = taxesTNB;
 	}
-	public TauxTNB(long id, Categorie categorie, BigDecimal surfaceMax, BigDecimal surfaceMin, double montant, Date dateApp,
+	public TauxTNB(Categorie categorie, BigDecimal surfaceMax, BigDecimal surfaceMin, double montant, Date dateApp,
 			Date datefinApp) {
 		super();
-		this.id = id;
 		this.categorie = categorie;
 		this.surfaceMax = surfaceMax;
 		this.surfaceMin = surfaceMin;

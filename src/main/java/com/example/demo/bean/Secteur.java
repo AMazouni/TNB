@@ -46,9 +46,8 @@ public class Secteur {
 		this.quartiers = quartiers;
 	}
 	
-	public Secteur(Long id, String libelle, List<Quartier> quartiers) {
+	public Secteur(String libelle, List<Quartier> quartiers) {
 		super();
-		this.id = id;
 		this.libelle = libelle;
 		this.quartiers = quartiers;
 	}

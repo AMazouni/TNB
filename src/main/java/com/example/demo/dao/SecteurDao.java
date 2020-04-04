@@ -8,5 +8,5 @@ import com.example.demo.bean.Secteur;
 
 @Repository
 public interface SecteurDao extends JpaRepository<Secteur, Long> {
-
+    public Secteur findTopByOrderByIdDesc();
 }

@@ -84,10 +84,9 @@ public class Achat {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Achat(Long id, Redevable oldredevable, Redevable newRedevable, Terrain terrain, Date dateachat,
+	public Achat(Redevable oldredevable, Redevable newRedevable, Terrain terrain, Date dateachat,
 			double prix) {
 		super();
-		this.id = id;
 		this.oldredevable = oldredevable;
 		this.newRedevable = newRedevable;
 		this.terrain = terrain;

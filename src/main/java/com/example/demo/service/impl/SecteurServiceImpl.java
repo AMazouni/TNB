@@ -25,6 +25,11 @@ public class SecteurServiceImpl implements SecteurService {
 	}
 
 	@Override
+	public Secteur findTopByOrderByIdDesc() {
+		return secteurDao.findTopByOrderByIdDesc();
+	}
+
+	@Override
 	public int deleteById(Long id) {
 		secteurDao.deleteById(id);
 		if (findByid(id) == null) {

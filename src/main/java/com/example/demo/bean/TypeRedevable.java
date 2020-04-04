@@ -34,9 +34,8 @@ public class TypeRedevable {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	public TypeRedevable(Long id, String libelle) {
+	public TypeRedevable(String libelle) {
 		super();
-		this.id = id;
 		this.libelle = libelle;
 	}
 	public TypeRedevable() {

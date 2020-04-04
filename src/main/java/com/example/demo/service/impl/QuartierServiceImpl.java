@@ -60,16 +60,15 @@ public class QuartierServiceImpl implements QuartierService {
 	@Override
 	@Transactional
 	public int save(Quartier quartier) {
-		if (findById(quartier.getId()) != null)
-			return -1; // Si le quartier exist deja dans la base de donne
+
 		if (secteurService.findByid(quartier.getSecteur().getId()) == null || quartier.getSecteur() == null)
 			return -2; // se le secteur donné au quartier n'exist pas ou est null
-		if (quartier.getLibelle() == null || quartier.getLibelle() == "")
+		if (quartier.getLibelle() == null || quartier.getLibelle().equals(""))
 			return -3; // si le Libelle donné est null ou vide
 		quartierDao.save(quartier);
 		if (quartier.getTerrains().size() > 0) {
 			for (Terrain terrain : quartier.getTerrains()) {
-				if (terrain.getQuartier().getId() != quartier.getId())
+				if (!terrain.getQuartier().getId().equals(quartier.getId()))
 					terrain.setQuartier(quartier);
 				// si le quartier donné au terrain est different du quartier qu'on veut
 				// sauvegarder

@@ -59,9 +59,8 @@ public class Quartier {
 		this.terrains = terrains;
 	}
 	
-	public Quartier(Long id, String libelle, Secteur secteur, List<Terrain> terrains) {
+	public Quartier(String libelle, Secteur secteur, List<Terrain> terrains) {
 		super();
-		this.id = id;
 		this.libelle = libelle;
 		this.secteur = secteur;
 		this.terrains = terrains;
