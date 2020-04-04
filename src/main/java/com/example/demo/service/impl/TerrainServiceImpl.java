@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -16,6 +17,7 @@ import com.example.demo.service.facade.QuartierService;
 import com.example.demo.service.facade.RedevableService;
 import com.example.demo.service.facade.TaxeTNBService;
 import com.example.demo.service.facade.TerrainService;
+import com.example.demo.utils.DateUtils;
 
 @Service
 public class TerrainServiceImpl implements TerrainService {
@@ -137,6 +139,16 @@ public class TerrainServiceImpl implements TerrainService {
 	@Override
 	public List<Terrain> findByRedevableIdentifiant(String identifiant) {
 		return terrainDao.findByRedevableIdentifiant(identifiant);
+	}
+
+	@Override
+	public List<Terrain> findAllTerrainsNonPaye() {
+		List<Terrain> terrains = findAll();
+		List<Terrain> terrainsNonPaye = new ArrayList<Terrain>();
+		for (Terrain terrain : terrains) {
+			if (terrain.getDernierAnnePaiement() != DateUtils.getYear()) terrainsNonPaye.add(terrain);
+		}
+		return terrainsNonPaye;
 	}
 
 }
