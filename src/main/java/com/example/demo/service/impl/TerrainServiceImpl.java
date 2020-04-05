@@ -6,18 +6,15 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.example.demo.bean.NotificationType;
 import com.example.demo.bean.Redevable;
+import com.example.demo.service.facade.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.bean.TaxeTNB;
 import com.example.demo.bean.Terrain;
 import com.example.demo.dao.TerrainDao;
-import com.example.demo.service.facade.CategorieService;
-import com.example.demo.service.facade.QuartierService;
-import com.example.demo.service.facade.RedevableService;
-import com.example.demo.service.facade.TaxeTNBService;
-import com.example.demo.service.facade.TerrainService;
 import com.example.demo.utils.DateUtils;
 
 @Service
@@ -32,6 +29,8 @@ public class TerrainServiceImpl implements TerrainService {
 	CategorieService categorieService;
 	@Autowired
 	TaxeTNBService taxeTNBservice;
+	@Autowired
+	NotificationTypeService notificationTypeService;
 
 	@Override
 	public List<Terrain> findAll() {
@@ -165,8 +164,42 @@ public class TerrainServiceImpl implements TerrainService {
 	}
 
 	@Override
+	public List<Terrain> findTerrainsRedevableNotification(Long redevableId, Long idNotificationType) {
+		Redevable redevable=redevableService.findById(redevableId);
+		List<Terrain> terrains = redevable.getTerrains();
+		List<Terrain> terrainsNotif = new ArrayList<Terrain>();
+		NotificationType notificationType=idNotificationType==-1? null:notificationTypeService.findById(idNotificationType);
+		if (notificationType==null){
+		for (Terrain terrain : terrains) {
+			if (terrain.getNotification()!=null) terrainsNotif.add(terrain);
+		}
+		return terrainsNotif;}
+		else if (notificationType.getNumero()==1){
+			for (Terrain terrain : terrains) {
+				if (terrain.getNotification()!=null){
+				if (terrain.getNotification().getNotificationType().getNumero()==1) terrainsNotif.add(terrain);}
+			}
+			return terrainsNotif;
+		}else if (notificationType.getNumero()==2){
+			for (Terrain terrain : terrains) {
+				if (terrain.getNotification()!=null){
+					if (terrain.getNotification().getNotificationType().getNumero()==2) terrainsNotif.add(terrain);}
+			}
+			return terrainsNotif;
+		}else if (notificationType.getNumero()==3){
+			for (Terrain terrain : terrains) {
+				if (terrain.getNotification()!=null){
+					if (terrain.getNotification().getNotificationType().getNumero()==3) terrainsNotif.add(terrain);}
+			}
+			return terrainsNotif;
+		}
+		return terrainsNotif;
+	}
+
+	@Override
 	public void saveWithNotif(Terrain terrain) {
 		terrainDao.save(terrain);
 	}
+
 
 }

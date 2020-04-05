@@ -10,4 +10,5 @@ import java.util.List;
 public interface NotificationTypeDao extends JpaRepository<NotificationType,Long> {
     public NotificationType findByNumero(int numero);
     public List<NotificationType> findAll();
+    public NotificationType findByid(Long id);
 }

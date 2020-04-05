@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.example.demo.bean.NotificationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -168,6 +169,10 @@ public class RedevableRest {
 	@GetMapping("/findAllRedevablesWithTerrainsNp")
 	public List<Redevable> findAllRedevablewithTerNp() {
 		return redevableService.findAllRedevablesWithNpTerrains();
+	}
+	@GetMapping("/findAllRedevablesWithNotifs/{id}")
+	public List<Redevable> findAllRedevablewithNotifByNotifType(@PathVariable Long id) {
+		return redevableService.findAllRedevablesWithNotificationsByNotifType(id);
 	}
 
 	@DeleteMapping("/deletebyidentifiant/{id}")

@@ -21,6 +21,11 @@ public class NotificationTypeServiceImpl implements NotificationTypeService {
     }
 
     @Override
+    public NotificationType findById(Long id) {
+        return notificationTypeDao.findByid(id);
+    }
+
+    @Override
     public void initNotificationType() {
         if (notificationTypeDao.findByNumero(1) == null && notificationTypeDao.findByNumero(3) == null && notificationTypeDao.findByNumero(2) == null) {
             notificationTypeDao.save(new NotificationType("notif1", 1));

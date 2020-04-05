@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.example.demo.bean.NotificationType;
 import com.example.demo.bean.Redevable;
 import com.example.demo.bean.Terrain;
 import com.example.demo.bean.TypeRedevable;
@@ -73,4 +74,6 @@ public interface RedevableService {
     List<Redevable> findRedevableOntUnTerrainDeCeSurface(BigDecimal surface);
 
     public List<Redevable> findAllRedevablesWithNpTerrains();
+
+    public List<Redevable> findAllRedevablesWithNotificationsByNotifType(Long idNotificationType);
 }

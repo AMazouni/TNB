@@ -85,6 +85,10 @@ public class TerrainRest {
 	public List<Terrain> findTerrainsRedevableNonPaye(@PathVariable Long redevableId) {
 		return terrainService.findTerrainsRedevableNonPaye(redevableId);
 	}
+	@GetMapping(path="/findTerrainNotif/{redevableId}/{notifId}")
+	public List<Terrain> findTerrainsRedevableNonPaye(@PathVariable Long redevableId,@PathVariable Long notifId) {
+		return terrainService.findTerrainsRedevableNotification(redevableId,notifId);
+	}
 
     
 	

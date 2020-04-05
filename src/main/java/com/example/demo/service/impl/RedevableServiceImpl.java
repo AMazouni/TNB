@@ -6,16 +6,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.example.demo.bean.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.bean.Achat;
-import com.example.demo.bean.Categorie;
-import com.example.demo.bean.Quartier;
-import com.example.demo.bean.Redevable;
-import com.example.demo.bean.TaxeTNB;
-import com.example.demo.bean.Terrain;
-import com.example.demo.bean.TypeRedevable;
 import com.example.demo.dao.RedevableDao;
 import com.example.demo.service.facade.AchatService;
 import com.example.demo.service.facade.CategorieService;
@@ -408,4 +402,23 @@ public class RedevableServiceImpl implements RedevableService {
 		return redevableNpList;
 	}
 
+	@Override
+	public List<Redevable> findAllRedevablesWithNotificationsByNotifType(Long idNotificationType) {
+		List<Redevable> redevables = redevableDao.findAll();
+		List<Redevable> redevableNotifList=new ArrayList<>();
+		for (Redevable r:redevables
+		) {
+			if (terrainService.findTerrainsRedevableNotification(r.getId(),idNotificationType).size()>0){
+				Redevable redevable=new Redevable();
+				redevable.setId(r.getId());
+				redevable.setTypeRedevable(r.getTypeRedevable());
+				redevable.setIdentifiant(r.getIdentifiant());
+				redevable.setNom(r.getNom());
+				redevable.setTaxesTNB(r.getTaxesTNB());
+				redevable.setTerrains(terrainService.findTerrainsRedevableNotification(r.getId(),idNotificationType));
+				redevableNotifList.add(redevable);
+			}
+		}
+		return redevableNotifList;
+	}
 }

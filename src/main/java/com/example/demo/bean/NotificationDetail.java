@@ -1,6 +1,8 @@
 package com.example.demo.bean;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class NotificationDetail {
 	private int moisRetard;
 	private int annee;
 	@ManyToOne
+	@JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
 	private Notification notification;
 
 

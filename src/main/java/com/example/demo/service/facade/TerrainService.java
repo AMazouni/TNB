@@ -3,6 +3,7 @@ package com.example.demo.service.facade;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.example.demo.bean.NotificationType;
 import com.example.demo.bean.Redevable;
 import com.example.demo.bean.Terrain;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public interface TerrainService {
 	public List<Terrain> findByDernierAnnePaiementAndQuartierSecteurLibelle(int dernierAnnePaiement,String Libelle);
 	public List<Terrain> findAllTerrainsNonPaye();
 	public List<Terrain> findTerrainsRedevableNonPaye(Long redevableId);
+	public List<Terrain> findTerrainsRedevableNotification(Long redevableId,Long idNotificationType);
 	public void saveWithNotif(Terrain terrain);
 
 }

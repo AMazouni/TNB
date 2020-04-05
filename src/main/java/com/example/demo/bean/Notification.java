@@ -24,7 +24,7 @@ public class Notification {
 	private Double montantRetard;
 	private int nombreMoisRetard;
 	@OneToMany(mappedBy = "notification")
-	@JsonProperty(access=Access.WRITE_ONLY)
+	@JsonProperty(access=Access.READ_WRITE)
 	List<NotificationDetail> notificationDetails = new ArrayList<NotificationDetail>();
 
 
