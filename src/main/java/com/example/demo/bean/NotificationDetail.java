@@ -1,13 +1,12 @@
 package com.example.demo.bean;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class NotificationDetail {
 	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 	private Double montantBase;
 	private Double montantRetard;

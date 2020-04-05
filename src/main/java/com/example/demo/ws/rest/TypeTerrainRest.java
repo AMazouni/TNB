@@ -26,7 +26,7 @@ public class TypeTerrainRest {
         return typeTerrainService.findbyTypeTerraincodeReference(codeReference);
     }
     @GetMapping("/findByTypeTerrainid/{id}")
-    public List<TypeTerrain> findByTypeTerrainid(@PathVariable("id") Long id) {
+    public TypeTerrain findByTypeTerrainid(@PathVariable("id") Long id) {
         return typeTerrainService.findByTypeTerrainid(id);
     }
 

@@ -165,6 +165,10 @@ public class RedevableRest {
 	public List<Redevable> findByTypeRedevableId(@PathVariable("id") Long id) {
 		return redevableService.findByTypeRedevableId(id);
 	}
+	@GetMapping("/findAllRedevablesWithTerrainsNp")
+	public List<Redevable> findAllRedevablewithTerNp() {
+		return redevableService.findAllRedevablesWithNpTerrains();
+	}
 
 	@DeleteMapping("/deletebyidentifiant/{id}")
 	public int deleteByIdentifiant(@PathVariable("id") String identifiant) {

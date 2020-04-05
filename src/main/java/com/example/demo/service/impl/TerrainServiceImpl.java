@@ -105,6 +105,7 @@ public class TerrainServiceImpl implements TerrainService {
 		return 1;
 	}
 
+
 	@Override
 	public List<Terrain> findByDernierAnnePaiementAndNotificationNotificationTypeNumero(int dernierAnnePaiement,
 			int numero) {
@@ -161,6 +162,11 @@ public class TerrainServiceImpl implements TerrainService {
 			if (terrain.getDernierAnnePaiement() != DateUtils.getYear()) terrainsNonPaye.add(terrain);
 		}
 		return terrainsNonPaye;
+	}
+
+	@Override
+	public void saveWithNotif(Terrain terrain) {
+		terrainDao.save(terrain);
 	}
 
 }

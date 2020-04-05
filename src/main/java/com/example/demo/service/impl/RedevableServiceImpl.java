@@ -387,5 +387,25 @@ public class RedevableServiceImpl implements RedevableService {
 		}
 		return result;
 	}
-	
+
+	@Override
+	public List<Redevable> findAllRedevablesWithNpTerrains() {
+		List<Redevable> redevables = redevableDao.findAll();
+		List<Redevable> redevableNpList=new ArrayList<>();
+		for (Redevable r:redevables
+			 ) {
+			if (terrainService.findTerrainsRedevableNonPaye(r.getId()).size()>0){
+				Redevable redevable=new Redevable();
+				redevable.setId(r.getId());
+				redevable.setTypeRedevable(r.getTypeRedevable());
+				redevable.setIdentifiant(r.getIdentifiant());
+				redevable.setNom(r.getNom());
+				redevable.setTaxesTNB(r.getTaxesTNB());
+				redevable.setTerrains(terrainService.findTerrainsRedevableNonPaye(r.getId()));
+				redevableNpList.add(redevable);
+			}
+		}
+		return redevableNpList;
+	}
+
 }

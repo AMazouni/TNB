@@ -26,7 +26,7 @@ public class Redevable {
 	@ManyToOne
 	private TypeRedevable typeRedevable;
 	@OneToMany(mappedBy = "redevable")
-	@JsonProperty(access= Access.WRITE_ONLY)
+	@JsonProperty(access= Access.READ_WRITE)
 	List<Terrain> terrains = new ArrayList<Terrain>();
 	@OneToMany(mappedBy = "redevable")
 	@JsonProperty(access=Access.WRITE_ONLY)

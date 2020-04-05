@@ -16,6 +16,7 @@ public class Notification {
 	@ManyToOne
 	private NotificationType notificationType;
 	@OneToOne
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Terrain terrain;
 	private int anneeDepart;
 	private int anneeFin;

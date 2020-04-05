@@ -27,5 +27,6 @@ public interface TerrainService {
 	public List<Terrain> findByDernierAnnePaiementAndQuartierSecteurLibelle(int dernierAnnePaiement,String Libelle);
 	public List<Terrain> findAllTerrainsNonPaye();
 	public List<Terrain> findTerrainsRedevableNonPaye(Long redevableId);
+	public void saveWithNotif(Terrain terrain);
 
 }

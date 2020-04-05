@@ -16,6 +16,11 @@ import java.util.List;
 public class NotificationRest {
     @Autowired
     NotificationService notificationService;
+
+    @PostMapping("/giveNotification")
+    public int giveNotification(@RequestBody Long idTerrain) {
+        return notificationService.giveNotification(idTerrain);
+    }
     @GetMapping("/NotificationType/{numero]")
     public List<Notification> findByNotificationTypeNumero(@PathVariable  int numero) {
         return notificationService.findByNotificationTypeNumero(numero);
@@ -24,20 +29,9 @@ public class NotificationRest {
     public List<Notification> findByAnneeDepartAndAnneeFin(@PathVariable int anneeDepart,@PathVariable int anneeFin) {
         return notificationService.findByAnneeDepartAndAnneeFin(anneeDepart, anneeFin);
     }
-    @GetMapping("/{anneeDepart}")
-    public List<Notification> findByAnneeDepart(@PathVariable int anneeDepart) {
-        return notificationService.findByAnneeDepart(anneeDepart);
-    }
-    @GetMapping("/{anneeFin}")
-    public List<Notification> findByAnneeFin(@PathVariable int anneeFin) {
-        return notificationService.findByAnneeFin(anneeFin);
-    }
     @GetMapping("/Terrain/{id}")
     public Notification findByTerrainId(@PathVariable  Long id) {
         return notificationService.findByTerrainId(id);
     }
-    @PostMapping(path="/give" , consumes = MediaType.APPLICATION_JSON_VALUE)
-    public int giveNotification(@RequestBody Terrain terrain) {
-        return notificationService.giveNotification(terrain);
-    }
+
 }

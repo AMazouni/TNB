@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.example.demo.bean.Terrain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +17,7 @@ import com.example.demo.service.facade.TauxTNBService;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping("/TNB-Api/typeredevable")
+@RequestMapping("/TNB-Api/tauxtnb")
 public class TauxTNBRest {
 
 	@Autowired
@@ -24,7 +26,7 @@ public class TauxTNBRest {
 	public TauxTNB findById(Long id) {
 		return tauxTNBservice.findById(id);
 	}
-
+	@GetMapping("/findAll")
 	public List<TauxTNB> findAll(){
 		return tauxTNBservice.findAll();
 	}

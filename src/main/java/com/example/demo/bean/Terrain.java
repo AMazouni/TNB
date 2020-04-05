@@ -20,17 +20,17 @@ public class Terrain {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private BigDecimal surface;
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonProperty(access = Access.READ_WRITE)
 	@ManyToOne
 	private Quartier quartier;
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	private Redevable redevable;
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonProperty(access = Access.READ_WRITE)
 	@ManyToOne
 	private Categorie categorie;
 	private int dernierAnnePaiement;
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonProperty(access = Access.READ_WRITE)
 	@OneToOne
 	private Notification notification;
 	@OneToMany(mappedBy = "terrain")

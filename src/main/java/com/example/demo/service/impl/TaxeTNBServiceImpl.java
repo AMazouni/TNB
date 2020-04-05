@@ -109,11 +109,16 @@ public class TaxeTNBServiceImpl implements TaxeTNBService {
 		Integer annee = taxeTNB.getAnnee();
 		Long idTerrain = taxeTNB.getTerrain().getId();
 		TaxeTNB payeSim = new TaxeTNB();
+		TauxTNB taux;
 		payeSim.setTerrain(terrainService.findByid(idTerrain));
 		Date date = DateUtils.getDateByYear(annee);
-		TauxTNB taux = tauxTNBService.findByDateAndSurfaceAndCategorie(payeSim.getTerrain().getSurface(), date,
-				payeSim.getTerrain().getCategorie()).get(0);
-		payeSim.setTauxTNB(taux);
+		if (!tauxTNBService.findByDateAndSurfaceAndCategorie(payeSim.getTerrain().getSurface(), date,
+				payeSim.getTerrain().getCategorie()).isEmpty()){taux = tauxTNBService.findByDateAndSurfaceAndCategorie(payeSim.getTerrain().getSurface(), date,
+				payeSim.getTerrain().getCategorie()).get(0);}
+		else  taux=tauxTNBService.findAll().get(0);
+
+
+				payeSim.setTauxTNB(taux);
 		payeSim.setDateTaxeTNB(new Date());
 		payeSim.setAnnee(annee);
 		payeSim.setTerrain(terrainService.findByid(idTerrain));

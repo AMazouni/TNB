@@ -81,7 +81,7 @@ public class TerrainRest {
 	public List<Terrain> findByDernierAnnePaiementAndQuartierSecteurLibelle(@PathVariable("dernierAnnePaiement") int dernierAnnePaiement,@PathVariable("libelle") String Libelle) {
 		return terrainService.findByDernierAnnePaiementAndQuartierSecteurLibelle(dernierAnnePaiement, Libelle);
 	}
-	@GetMapping(path="/findRedevableTerrainNP/{redevableId}",consumes = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path="/findRedevableTerrainNP/{redevableId}")
 	public List<Terrain> findTerrainsRedevableNonPaye(@PathVariable Long redevableId) {
 		return terrainService.findTerrainsRedevableNonPaye(redevableId);
 	}
