@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -31,6 +32,8 @@ public class Redevable {
 	@OneToMany(mappedBy = "redevable")
 	@JsonProperty(access=Access.WRITE_ONLY)
 	List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
+	@OneToOne
+	private Heritage heritage;
 	
 	
 	public Long getId() {

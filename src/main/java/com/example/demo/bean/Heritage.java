@@ -4,16 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Heritage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
+	@OneToOne
 	Redevable redevableOriginal;
+	@OneToOne
 	Terrain terrainOriginal;
+	@OneToOne
 	Redevable nouveauRedevable;
 	Float pourcentage;
+	@OneToOne
 	Terrain nouveauTerrain;
 	public Long getId() {
 		return id;

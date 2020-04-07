@@ -38,6 +38,8 @@ public class Terrain {
 	List<TaxeTNB> taxesTNB = new ArrayList<TaxeTNB>();
 	@ManyToOne
 	private TypeTerrain typeterrain;
+	@OneToOne
+	private Heritage heritage;
 
 	public Notification getNotification() {
 		return notification;
